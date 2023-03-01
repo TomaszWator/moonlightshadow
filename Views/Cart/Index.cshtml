@@ -1,0 +1,141 @@
+@{
+    ViewData["Title"] = "Koszyk";
+}
+
+@await Html.PartialAsync("~/Views/Cart/CartModals/EmptyCartModal.cshtml")
+@await Html.PartialAsync("~/Views/Cart/CartModals/WaitingForPaymentModal.cshtml")
+
+@if (TempData.ContainsKey("ShowModal"))
+{
+    string modalName = (string)TempData["ShowModal"];
+                        
+    <script>
+        $(document).ready(function () {
+            $('#@modalName').modal("show");
+        });
+    </script>
+}
+
+<div class="page row">
+    <div class="col-md-12">
+        <div class="shoping-cart-panel">
+            <div class="shoping-cart-panel-title text-center"
+                style="background-image: url('https://images.unsplash.com/photo-1557821552-17105176677c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80');">
+                <i class="bi bi-bag-check-fill "></i>
+                <br />
+                Koszyk
+            </div>
+
+            <div class="shopping-cart-panel-summary">
+
+                @if (ViewBag.Cart.Count == 0)
+                {
+                    <div class="fs-2 fw-bold text-center">Brak produktów w koszyku</div>
+                }
+                else
+                {
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nazwa</th>
+                                <th scope="col">Cena</th>
+                                <th scope="col">Usuń</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0, row = 1; i < ViewBag.Cart.Count; i++, row++)
+                            {
+                                <tr>
+                                    <th scope="row">@row</th>
+                                    <td>@ViewBag.Cart[i].Name</td>
+                                    <td>@ViewBag.Cart[i].Price zł</td>
+
+                                    <td>
+                                        <a class="bi bi-x-square action-button" asp-controller="Cart" asp-action="DeleteOrder" asp-route-category=@ViewBag.Cart[i].Category asp-route-id=@ViewBag.Cart[i].Id>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+
+            <div class="shopping-cart-panel-sum-price">
+                Podsumowanie - > Cena: @ViewBag.CartPrice zł
+
+                @if(ViewBag.Cart.Count == 0)
+                {
+                    <a asp-area="" asp-controller="Payment" asp-action="Index">
+                        <button class="btn btn-outline-dark float-end" disabled="disabled">Przejdź do płatności</button>
+                    </a>
+                }
+                else
+                {
+                    <a asp-area="" asp-controller="Payment" asp-action="Index">
+                        <button class="btn btn-outline-dark float-end">Przejdź do płatności</button>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="col-md-12">
+            <div class="watched-panel text-center">
+                <div class="watched-panel-title"
+                style="background-image: url('https://images.unsplash.com/photo-1567425678160-78f996b81112?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1288&q=80');">
+                    <i class="bi bi-pin-fill"></i>
+                    <br />
+                    Obserwowane
+                </div>
+
+                <div class="watched-panel-summary">
+                    @if (ViewBag.Followed.Count == 0)
+                    {
+                        <div class="fs-2 fw-bold text-center">Brak produktów w koszyku</div>
+                    }
+                    else
+                    {
+                        <table class="table text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nazwa</th>
+                                    <th scope="col">Cena</th>
+                                    <th scope="col">Dodaj do koszyka</th>
+                                    <th scope="col">Usuń</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0, row = 1; i < ViewBag.Followed.Count; i++, row++)
+                                {
+                                    <tr>
+                                        <th scope="row">@row</th>
+                                        <td>@ViewBag.Followed[i].Name</td>
+                                        <td>@ViewBag.Followed[i].Price zł</td>
+                                        <td>
+                                            <a class="bi bi-plus-square action-button" asp-controller="Cart" asp-action="AddFollowedToCart"
+                                    asp-route-category=@ViewBag.Followed[i].Category
+                                    asp-route-id=@ViewBag.Followed[i].Id>
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <a class="bi bi-x-square action-button" asp-controller="Cart" asp-action="DeleteFollowed"
+                                    asp-route-category=@ViewBag.Followed[i].Category
+                                    asp-route-id=@ViewBag.Followed[i].Id>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,300 @@
+@model MoonlightShadow.ViewModels.Account.AccountViewModel;
+@{
+    ViewData["Title"] = "Konto";
+}
+
+@await Html.PartialAsync("~/Views/Account/AccountModals/ConfirmChangePasswordModal.cshtml", Model)
+@await Html.PartialAsync("~/Views/Account/AccountModals/ConfirmUpdateShippingDataModal.cshtml", Model)
+
+@if (TempData.ContainsKey("ShowModal"))
+{
+    string modalName = (string)TempData["ShowModal"];
+                        
+    <script>
+        $(document).ready(function () {
+            $('#@modalName').modal("show");
+        });
+    </script>
+}
+
+<div class="page row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="account-panel">
+            <div class="account-title">
+                <i class="bi bi-info-square-fill"></i>
+                Informacje o użytkowniku
+                <hr />
+            </div>
+            <div class="log-in-panel-input">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Imię i nazwisko</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary text-end">
+                        @Model.UserDataViewModel.FullName
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Email do wysyłki</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary text-end">
+                        @Model.UserDataViewModel.EmailShipping
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Numer telefonu</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary text-end">
+                        @Model.UserDataViewModel.PhoneNumber
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Address ogólny</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary text-end">
+                        @Model.UserDataViewModel.Address.GetGeneralAddress()
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Address dokładny</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary text-end">
+                        @Model.UserDataViewModel.Address.GetAccurateAddress()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="account-panel">
+            <div class="account-title">
+                <i class="bi bi-key-fill"></i>
+                Zmiana hasła
+                <hr />
+            </div>
+            <div class="log-in-panel-input">
+                @using (Html.BeginForm("Index", "Account", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3 row">
+                        @Html.LabelFor(o => o.ChangePasswordViewModel.Login, new { @class="col-sm-4 col-form-label" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.ChangePasswordViewModel.Login, new { @class="form-control", @placeholder="login jest w mailu ;)" })
+                            @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.Login)
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        @Html.LabelFor(o => o.ChangePasswordViewModel.Password, new { @class="col-sm-4 col-form-label" })
+                        <div class="col-sm-8">
+                            @Html.PasswordFor(o => o.ChangePasswordViewModel.Password, new { @class="form-control", @placeholder="stare hasło" })
+                            @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.Password)
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        @Html.LabelFor(o => o.ChangePasswordViewModel.NewPassword, new { @class="col-sm-4 col-form-label" })
+                        <div class="col-sm-8">
+                            @Html.PasswordFor(o => o.ChangePasswordViewModel.NewPassword, new { @class="form-control", @placeholder="nowe hasło"})
+                            @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.NewPassword)
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        @Html.LabelFor(o => o.ChangePasswordViewModel.RepetedPassword, new { @class="col-sm-4 col-form-label" })
+                        <div class="col-sm-8">
+                            @Html.PasswordFor(o => o.ChangePasswordViewModel.RepetedPassword, new { @class="form-control", @placeholder="powtórz hasło" })
+                            @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.RepetedPassword)
+                        </div>
+                    </div>
+
+                    <input id="TypeOfModel" name="TypeOfModel" type="hidden" value="ChangePasswordViewModel">
+
+                    <div class="mb-3 row">
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-secondary sign-in-button float-end">Zmień hasło</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="account-panel">
+            <div class="sign-in-panel-title">
+                <i class="bi bi-card-text"></i>
+                Dane do wysyłki
+                <hr />
+            </div>
+
+            <div class="sign-in-panel-input">
+                @using (Html.BeginForm("Index", "Account", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 text-primary">Dane kontaktowe</h6>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.ShippingDataViewModel.FirstName)
+                                @Html.TextBoxFor(o => o.ShippingDataViewModel.FirstName, new { @class="form-control", @placeholder="Wprowadź imię" })
+                                @Html.ValidationMessageFor(o => o.ShippingDataViewModel.FirstName)
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.ShippingDataViewModel.LastName)
+                                @Html.TextBoxFor(o => o.ShippingDataViewModel.LastName, new { @class="form-control", @placeholder="Wprowadź nazwisko" })
+                                @Html.ValidationMessageFor(o => o.ShippingDataViewModel.LastName)
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.ShippingDataViewModel.PhoneNumber)
+                                @Html.TextBoxFor(o => o.ShippingDataViewModel.PhoneNumber, new { @class="form-control", @placeholder="Wprowadź numer telefonu" })
+                                @Html.ValidationMessageFor(o => o.ShippingDataViewModel.PhoneNumber)
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.ShippingDataViewModel.EmailShipping)
+                                @Html.TextBoxFor(o => o.ShippingDataViewModel.EmailShipping, new { @class="form-control", @placeholder="Wprowadź email do wysyłki" })
+                                @Html.ValidationMessageFor(o => o.ShippingDataViewModel.EmailShipping)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.ShippingDataViewModel.Country)
+                                @Html.TextBoxFor(o => o.ShippingDataViewModel.Country, new { @class="form-control", @placeholder="Wprowadź kraj" })
+                                @Html.ValidationMessageFor(o => o.ShippingDataViewModel.Country)
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.ShippingDataViewModel.State)
+                                @Html.TextBoxFor(o => o.ShippingDataViewModel.State, new { @class="form-control", @placeholder="Wprowadź województwo" })
+                                @Html.ValidationMessageFor(o => o.ShippingDataViewModel.State)
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.ShippingDataViewModel.Town)
+                                @Html.TextBoxFor(o => o.ShippingDataViewModel.Town, new { @class="form-control", @placeholder="Wprowadź miejscowość" })
+                                @Html.ValidationMessageFor(o => o.ShippingDataViewModel.Town)
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.ShippingDataViewModel.Street)
+                                @Html.TextBoxFor(o => o.ShippingDataViewModel.Street, new { @class="form-control", @placeholder="Wprowadź ulicę" })
+                                @Html.ValidationMessageFor(o => o.ShippingDataViewModel.Street)
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.ShippingDataViewModel.ZipCode)
+                                @Html.TextBoxFor(o => o.ShippingDataViewModel.ZipCode, new { @class="form-control", @placeholder="Wprowadź kod pocztowy" })
+                                @Html.ValidationMessageFor(o => o.ShippingDataViewModel.ZipCode)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mt-3 mb-2 text-primary">Zatwierdzenie zmian</h6>
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.ShippingDataViewModel.Password)
+                                @Html.PasswordFor(o => o.ShippingDataViewModel.Password, new { @class="form-control" })
+                                @Html.ValidationMessageFor(o => o.ShippingDataViewModel.Password)
+                            </div>
+                        </div>
+                    </div>
+
+                    <input id="TypeOfModel" name="TypeOfModel" type="hidden" value="ShippingDataViewModel">
+
+                    <div class="row mt-4">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-right">
+                                <button type="reset" class="btn btn-secondary">Resetuj</button>
+                                <button type="submit" class="btn btn-primary">Zaktualizuj dane</button>
+                            </div>
+                        </div>
+                    </div>
+                }   
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="shoping-cart-panel">
+            <div class="shoping-cart-panel-title text-center" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fkoszykzdomenami.pl%2Fimages%2Ffoto%2Fw%2Fprzeprowadzka-ko.jpg&f=1&nofb=1');">
+                <i class="bi bi-archive-fill"></i>
+                <br />
+                Zamówione produkty
+            </div>
+
+            <div class="shopping-cart-panel-summary">
+
+                @if (Model.BoughtOrders.Count == 0)
+                {
+                    <div class="fs-2 fw-bold text-center">Brak zamówień</div>
+                }
+                else
+                {
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nazwa transakcji</th>
+                                <th scope="col">List produktów</th>
+                                <th scope="col">Cena</th>
+                                <th scope="col">Płatność potwierdzona</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var boughtOrder in Model.BoughtOrders)
+                            {
+                                <tr>
+                                    <td>@boughtOrder.TitleTransaction</td>
+                                    <td>
+                                        @foreach (var product in boughtOrder.ProductItems)
+                                        {
+                                            @product.Name 
+                                            <br>
+                                        }
+                                    </td>
+                                    <td>@boughtOrder.FullPrice zł</td>
+                                    @if(boughtOrder.isPaymentVerified)
+                                    {
+                                       <td><span class="bi bi-check-square-fill"></span></td> 
+                                    }
+                                    else
+                                    {
+                                        <td><span class="bi bi-x-square-fill"></span></td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,23 @@
+nav {
+    height: 80px;
+    font-family: 'New Tegomin', serif;
+}
+
+a.brand-name {
+    color: black;
+    text-decoration: none;
+}
+
+a.brand-name:hover {
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+    text-decoration: none;
+}
+
+.menu {}
+
+.menu-card {
+    height: 180px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

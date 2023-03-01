@@ -1,0 +1,338 @@
+﻿
+@{
+    ViewData["Title"] = "Main page";
+}
+
+
+<div class="menu">
+    <div class="row">
+        <a class="menu-card col-md-2 px-1 pt-1" asp-controller="Category" asp-action="Laptop">
+            <div class="content" style="background-image: url('https://images.unsplash.com/photo-1520375300877-3500f50d069e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                <div class="menu-title">
+                    Laptopy
+                </div>
+            </div>
+        </a>
+
+        <a class="menu-card col-md-2 px-1 pt-1" asp-controller="Category" asp-action="Phone">
+            <div class="content" style="background-image: url('https://images.unsplash.com/photo-1615391208061-2205dfea6b93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80');">
+                <div class="menu-title">
+                    Telefony
+                </div>
+            </div>
+        </a>
+
+        <div class="menu-card col-md-4 px-1 pt-1">
+            <div class="main-logo" style="background-image: url('./img/main-logo.png'); background-size: contain">
+                <div class="menu-search">
+                    <div class="input-group">
+                        <input class="form-control input-search text-center" type="text" value="" placeholder="MoonlighShadow" />
+                        <span class="input-group-text">
+                            <i class="bi bi-search"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a class="menu-card col-md-2 px-1 pt-1" asp-controller="Category" asp-action="Camera">
+            <div class="content" style="background-image: url('https://images.unsplash.com/photo-1617629245105-a1632dd7c14a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                <div class="menu-title">
+                    Aparaty
+                </div>
+            </div>
+        </a>
+
+        <a class="menu-card col-md-2 px-1 pt-1" asp-controller="Category" asp-action="Game">
+            <div class="content" style="background-image: url('https://images.unsplash.com/photo-1617195347883-e72aeeef0ae7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fGdhbWVzfGVufDB8fDJ8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');">
+                <div class="menu-title">
+                    Gry i Programy
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<div class="recommend">
+    <div class="title">
+        $ Bestsellary - bo jestem tego warty
+    </div>
+
+    <div class="row slider-bestsellary">
+        <div class="col-md-6 col-lg-4 col-xxl-3">
+            <div class="product-card">
+                <div class="image" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.ldlc.com%2Fld%2Fproducts%2F00%2F04%2F49%2F15%2FLD0004491592_2.jpg&f=1&nofb=1');"></div>
+                <div class="description">
+                    <div class="product">
+                        <div class="product-name d-inline">
+                            <p class="d-inline float-start m-0 p-0">Nazwa produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 text-success">Nokia 6 Argent</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="product-cost d-inline">
+                            <p class="d-inline float-start m-0 p-0">Cena produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 fw-bold text-danger">2220 zł</p>
+                        </div>
+                    </div>
+                    <div class="button row">
+                        <button class="col btn btn-success text-success btn-open-ofert">
+                            <i class="bi bi-bag-fill"></i>
+                            Dodaj do koszyka
+                        </button>
+                        <button class="col btn btn-danger text-danger btn-buy-now">
+                            <i class="bi bi-clipboard-data"></i>
+                            Zobacz ofertę</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 col-xxl-3">
+            <div class="product-card">
+                <div class="image" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fi5.walmartimages.com%2Fasr%2F20caa881-9f84-478b-8259-b9c3448e1007_1.0872b05362d97ff68033417572228b40.jpeg&f=1&nofb=1');"></div>
+                <div class="description">
+                    <div class="product">
+                        <div class="product-name d-inline">
+                            <p class="d-inline float-start m-0 p-0">Nazwa produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 text-success">iPhone 4S</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="product-cost d-inline">
+                            <p class="d-inline float-start m-0 p-0">Cena produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 fw-bold text-danger">2220 zł</p>
+                        </div>
+                    </div>
+                    <div class="button row">
+                        <button class="col btn btn-success text-success btn-open-ofert">
+                            <i class="bi bi-bag-fill"></i>
+                            Dodaj do koszyka
+                        </button>
+                        <button class="col btn btn-danger text-danger btn-buy-now">
+                            <i class="bi bi-clipboard-data"></i>
+                            Zobacz ofertę</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 col-xxl-3">
+            <div class="product-card">
+                <div class="image" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdimovi.eu%2Ffile%2F2019%2F04%2FXiaomi-Redmi-Note-6-Pro-64GB-4GB-RAM-6.26-inch-Dual-Camera-LTE-Factory-Unlocked-Smartphone-Global-Version-Black.jpg&f=1&nofb=1');"></div>
+                <div class="description">
+                    <div class="product">
+                        <div class="product-name d-inline">
+                            <p class="d-inline float-start m-0 p-0">Nazwa produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 text-success">Redmi Note 6 Pro</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="product-cost d-inline">
+                            <p class="d-inline float-start m-0 p-0">Cena produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 fw-bold text-danger">2220 zł</p>
+                        </div>
+                    </div>
+                    <div class="button row">
+                        <button class="col btn btn-success text-success btn-open-ofert">
+                            <i class="bi bi-bag-fill"></i>
+                            Dodaj do koszyka
+                        </button>
+                        <button class="col btn btn-danger text-danger btn-buy-now">
+                            <i class="bi bi-clipboard-data"></i>
+                            Zobacz ofertę</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="recommend">
+    <div class="title">
+        * Nowości - powiedz kotku co masz w środku
+    </div>
+
+    <div class="row slider-bestsellary">
+        <div class="col-md-6 col-lg-4 col-xxl-3">
+            <div class="product-card">
+                <div class="image" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdimovi.eu%2Ffile%2F2019%2F04%2FXiaomi-Redmi-Note-6-Pro-64GB-4GB-RAM-6.26-inch-Dual-Camera-LTE-Factory-Unlocked-Smartphone-Global-Version-Black.jpg&f=1&nofb=1');"></div>
+                <div class="description">
+                    <div class="product">
+                        <div class="product-name d-inline">
+                            <p class="d-inline float-start m-0 p-0">Nazwa produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 text-success">Smartfon</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="product-cost d-inline">
+                            <p class="d-inline float-start m-0 p-0">Cena produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 fw-bold text-danger">2220 zł</p>
+                        </div>
+                    </div>
+                    <div class="button row">
+                        <button class="col btn btn-success text-success btn-open-ofert">
+                            <i class="bi bi-bag-fill"></i>
+                            Dodaj do koszyka
+                        </button>
+                        <button class="col btn btn-danger text-danger btn-buy-now">
+                            <i class="bi bi-clipboard-data"></i>
+                            Zobacz ofertę</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 col-xxl-3">
+            <div class="product-card">
+                <div class="image" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdimovi.eu%2Ffile%2F2019%2F04%2FXiaomi-Redmi-Note-6-Pro-64GB-4GB-RAM-6.26-inch-Dual-Camera-LTE-Factory-Unlocked-Smartphone-Global-Version-Black.jpg&f=1&nofb=1');"></div>
+                <div class="description">
+                    <div class="product">
+                        <div class="product-name d-inline">
+                            <p class="d-inline float-start m-0 p-0">Nazwa produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 text-success">Smartfon</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="product-cost d-inline">
+                            <p class="d-inline float-start m-0 p-0">Cena produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 fw-bold text-danger">2220 zł</p>
+                        </div>
+                    </div>
+                    <div class="button row">
+                        <button class="col btn btn-success text-success btn-open-ofert">
+                            <i class="bi bi-bag-fill"></i>
+                            Dodaj do koszyka
+                        </button>
+                        <button class="col btn btn-danger text-danger btn-buy-now">
+                            <i class="bi bi-clipboard-data"></i>
+                            Zobacz ofertę</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 col-xxl-3">
+            <div class="product-card">
+                <div class="image" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdimovi.eu%2Ffile%2F2019%2F04%2FXiaomi-Redmi-Note-6-Pro-64GB-4GB-RAM-6.26-inch-Dual-Camera-LTE-Factory-Unlocked-Smartphone-Global-Version-Black.jpg&f=1&nofb=1');"></div>
+                <div class="description">
+                    <div class="product">
+                        <div class="product-name d-inline">
+                            <p class="d-inline float-start m-0 p-0">Nazwa produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 text-success">Smartfon</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="product-cost d-inline">
+                            <p class="d-inline float-start m-0 p-0">Cena produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 fw-bold text-danger">2220 zł</p>
+                        </div>
+                    </div>
+                    <div class="button row">
+                        <button class="col btn btn-success text-success btn-open-ofert">
+                            <i class="bi bi-bag-fill"></i>
+                            Dodaj do koszyka
+                        </button>
+                        <button class="col btn btn-danger text-danger btn-buy-now">
+                            <i class="bi bi-clipboard-data"></i>
+                            Zobacz ofertę</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="recommend">
+    <div class="title">
+        ~ Polecamy i kłaniamy się nisko
+    </div>
+
+    <div class="row slider-bestsellary">
+        <div class="col-md-6 col-lg-4 col-xxl-3">
+            <div class="product-card">
+                <div class="image" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdimovi.eu%2Ffile%2F2019%2F04%2FXiaomi-Redmi-Note-6-Pro-64GB-4GB-RAM-6.26-inch-Dual-Camera-LTE-Factory-Unlocked-Smartphone-Global-Version-Black.jpg&f=1&nofb=1');"></div>
+                <div class="description">
+                    <div class="product">
+                        <div class="product-name d-inline">
+                            <p class="d-inline float-start m-0 p-0">Nazwa produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 text-success">Smartfon</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="product-cost d-inline">
+                            <p class="d-inline float-start m-0 p-0">Cena produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 fw-bold text-danger">2220 zł</p>
+                        </div>
+                    </div>
+                    <div class="button row">
+                        <button class="col btn btn-success text-success btn-open-ofert">
+                            <i class="bi bi-bag-fill"></i>
+                            Dodaj do koszyka
+                        </button>
+                        <button class="col btn btn-danger text-danger btn-buy-now">
+                            <i class="bi bi-clipboard-data"></i>
+                            Zobacz ofertę</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 col-xxl-3">
+            <div class="product-card">
+                <div class="image" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdimovi.eu%2Ffile%2F2019%2F04%2FXiaomi-Redmi-Note-6-Pro-64GB-4GB-RAM-6.26-inch-Dual-Camera-LTE-Factory-Unlocked-Smartphone-Global-Version-Black.jpg&f=1&nofb=1');"></div>
+                <div class="description">
+                    <div class="product">
+                        <div class="product-name d-inline">
+                            <p class="d-inline float-start m-0 p-0">Nazwa produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 text-success">Smartfon</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="product-cost d-inline">
+                            <p class="d-inline float-start m-0 p-0">Cena produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 fw-bold text-danger">2220 zł</p>
+                        </div>
+                    </div>
+                    <div class="button row">
+                        <button class="col btn btn-success text-success btn-open-ofert">
+                            <i class="bi bi-bag-fill"></i>
+                            Dodaj do koszyka
+                        </button>
+                        <button class="col btn btn-danger text-danger btn-buy-now">
+                            <i class="bi bi-clipboard-data"></i>
+                            Zobacz ofertę</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 col-xxl-3">
+            <div class="product-card">
+                <div class="image" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdimovi.eu%2Ffile%2F2019%2F04%2FXiaomi-Redmi-Note-6-Pro-64GB-4GB-RAM-6.26-inch-Dual-Camera-LTE-Factory-Unlocked-Smartphone-Global-Version-Black.jpg&f=1&nofb=1');"></div>
+                <div class="description">
+                    <div class="product">
+                        <div class="product-name d-inline">
+                            <p class="d-inline float-start m-0 p-0">Nazwa produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 text-success">Smartfon</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="product-cost d-inline">
+                            <p class="d-inline float-start m-0 p-0">Cena produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 fw-bold text-danger">2220 zł</p>
+                        </div>
+                    </div>
+                    <div class="button row">
+                        <button class="col btn btn-success text-success btn-open-ofert">
+                            <i class="bi bi-bag-fill"></i>
+                            Dodaj do koszyka
+                        </button>
+                        <button class="col btn btn-danger text-danger btn-buy-now">
+                            <i class="bi bi-clipboard-data"></i>
+                            Zobacz ofertę</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* @foreach (var product in Model)
+    {
+
+    } *@

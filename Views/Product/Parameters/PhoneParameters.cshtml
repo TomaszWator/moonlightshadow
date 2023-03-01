@@ -1,0 +1,163 @@
+<div class="product-parameters-group ">
+    <div class="float-start m-0 p-0">System operacyjny:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.OperatingSystem</div>
+</div>
+<br />
+<hr />
+<div class="product-parameters-group">
+    <div class="float-start m-0 p-0 fw-bold fs-4">Ekran</div>
+    <br />
+    <br />
+    <div class="float-start m-0 p-0">Przekątna:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Screen.Diagonal</div>
+    <br />
+    <div class="float-start m-0 p-0">Rozdzielczość:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Screen.Resolution</div>
+    <br />
+    <div class="float-start m-0 p-0">Typ:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Screen.MatrixType</div>
+    <br />
+    <div class="float-start m-0 p-0">Dotykowy:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Screen.Touchscreen</div>
+    <br />
+</div>
+<br />
+<hr />
+
+<div class="product-parameters-group">
+    <div class="float-start m-0 p-0 fw-bold fs-4">Procesor</div>
+    <br />
+    <br />
+    <div class="float-start m-0 p-0">Seria i model:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Processor.Series @ViewBag.Product.Processor.Model
+    </div>
+    <br />
+    <div class="float-start m-0 p-0">Rdzenie:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Processor.Cores</div>
+    <br />
+    <div class="float-start m-0 p-0">Wątki:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Processor.Threads</div>
+    <br />
+    <div class="float-start m-0 p-0">Częstotliwość taktowania:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Processor.Frequency</div>
+    <br />
+</div>
+<br />
+<hr />
+
+<div class="product-parameters-group">
+    <div class="float-start m-0 p-0 fw-bold fs-4">Ram</div>
+    <br />
+    <br />
+    <div class="float-start m-0 p-0">Rozmiar:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Ram.Size</div>
+    <br />
+</div>
+<br />
+<hr />
+
+<div class="product-parameters-group">
+    <div class="float-start m-0 p-0 fw-bold fs-4">Dysk twardy</div>
+    <br />
+    <br />
+    <div class="float-start m-0 p-0">Rozmiar:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.HardDrive.Capacity</div>
+    <br />
+</div>
+<br />
+<hr />
+
+<div class="product-parameters-group">
+    <div class="float-start m-0 p-0 fw-bold fs-4">Karta graficzna</div>
+    <br />
+    <br />
+    <div class="float-start m-0 p-0">Nazwa:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.GraphicsCard.Name</div>
+    <br />
+    <div class="float-start m-0 p-0">Typ:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.GraphicsCard.Type</div>
+    <br />
+</div>
+<br />
+<hr />
+
+<div class="product-parameters-group">
+    <div class="float-start m-0 p-0 fw-bold fs-4">Bateria</div>
+    <br />
+    <br />
+    <div class="float-start m-0 p-0">Typ:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Battery.Type</div>
+    <br />
+    <div class="float-start m-0 p-0">Pojemność:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Battery.Capacity</div>
+    <br />
+    <div class="float-start m-0 p-0">Długość pracy na baterii:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Battery.maxLifeTime</div>
+    <br />
+</div>
+<br />
+<hr />
+
+<div class="product-parameters-group">
+    <div class="float-start m-0 p-0 fw-bold fs-4">Aparat</div>
+    <br />
+    <br />
+    <div class="float-start m-0 p-0">Aparat przedni:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.FrontCameraResolution</div>
+    <br />
+    @if (@ViewBag.Product.BackCameraResolution != null)
+    {
+        <div class="float-start m-0 p-0">Blokada simlock:</div>
+        <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.BackCameraResolution</div>
+        <br />
+    }
+</div>
+<br />
+<hr />
+
+<div class="product-parameters-group">
+    <div class="float-start m-0 p-0 fw-bold fs-4">Karta Sim</div>
+    <br />
+    <br />
+    <div class="float-start m-0 p-0">Typ:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.SimCard.Type</div>
+    <br />
+    <div class="float-start m-0 p-0">Blokada simlock:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.SimCard.Simlock</div>
+    <br />
+</div>
+<br />
+<hr />
+
+<div class="product-parameters-group">
+    <div class="float-start m-0 p-0 fw-bold fs-4">Złącza</div>
+    <br />
+    <br />
+    <div class="float-end text-end m-0 p-0 fw-bold">
+        @string.Join(", ", ViewBag.Product.Connectors)
+    </div>
+</div>
+<br />
+<hr />
+
+<div class="product-parameters-group">
+    <div class="float-start m-0 p-0 fw-bold fs-4">Komunikacja</div>
+    <br />
+    <br />
+    <div class="float-end text-end m-0 p-0 fw-bold">
+        @string.Join(", ", ViewBag.Product.Communication)
+    </div>
+</div>
+<br />
+<hr />
+
+<div class="product-parameters-group">
+    <div class="float-start m-0 p-0 fw-bold fs-4">Dodatki</div>
+    <br />
+    <br />
+    <div class="float-end text-end m-0 p-0 fw-bold">
+        @string.Join(", ", ViewBag.Product.Features)
+    </div>
+</div>
+<br />
+<hr />

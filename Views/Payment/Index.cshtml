@@ -1,0 +1,164 @@
+@model MoonlightShadow.ViewModels.PaymentViewModel;
+@{
+    ViewData["Title"] = "Płatność";
+}
+
+<div class="page row">
+    <div class="col-md-12">
+        <div class="payment-panel">
+            <div class="payment-panel-title text-center"
+                style="background-image: url('https://images.unsplash.com/photo-1565373676943-403a8e5c2900?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80');">
+                <i class="bi bi-cash-stack"></i>
+                <br />
+                Płatność
+            </div>
+
+            <div class="payment-panel-method">
+                <div class="payment-panel-method-title">
+                    <i class="bi bi-credit-card-2-back-fill"></i>
+                    Metoda płatności
+                    <hr />
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>Przelew na kartę</h1>
+                        
+                        Tytuł przelewu: @Model.TitleTransaction
+                        <br>
+                        Numer karty kredytowej: 35 1050 1070 1000 0092 6381 7836
+                        <br>
+                        Kwota transakcji: @Model.FullPrice zł 
+                    </div>
+
+                    <div class="col-md-6">
+                        <h1>Blik na numer telefonu</h1>
+                        
+                        Tytuł płatności blik: @Model.TitleTransaction
+                        <br>
+                        Numer telefonu: 663 753 656
+                        <br>
+                        Kwota transakcji: @Model.FullPrice zł 
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="payment-panel-method-title">
+                    <i class="bi bi-envelope-fill"></i>
+                    Dane do wysyłki
+                    <hr />
+                </div>
+                @using (Html.BeginForm("Index", "Payment", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-4 col-form-label">
+                            @Html.LabelFor(o => o.FirstName)
+                        </label>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.FirstName, new { @class="form-control", @placeholder="Wprowadź imię" })
+                            @Html.ValidationMessageFor(o => o.FirstName)
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-4 col-form-label">
+                            @Html.LabelFor(o => o.LastName)
+                        </label>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.LastName, new { @class="form-control", @placeholder="Wprowadź nazwisko" })
+                            @Html.ValidationMessageFor(o => o.LastName)
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-4 col-form-label">
+                            @Html.LabelFor(o => o.EmailShipping)
+                        </label>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.EmailShipping, new { @class="form-control", @placeholder="Wprowadź email do wysyłki" })
+                            @Html.ValidationMessageFor(o => o.EmailShipping)
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-4 col-form-label">
+                            @Html.LabelFor(o => o.EmailContact)
+                        </label>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.EmailContact, new { @class="form-control", @placeholder="Wprowadź email kontaktowy" })
+                            @Html.ValidationMessageFor(o => o.EmailContact)
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-4 col-form-label">
+                            @Html.LabelFor(o => o.PhoneNumber)
+                        </label>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.PhoneNumber, new { @class="form-control", @placeholder="Wprowadź numer kontaktowy" })
+                            @Html.ValidationMessageFor(o => o.PhoneNumber)
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-4 col-form-label">
+                            @Html.LabelFor(o => o.Country)
+                        </label>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.Country, new { @class="form-control", @placeholder="Wprowadź kraj" })
+                            @Html.ValidationMessageFor(o => o.Country)
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-4 col-form-label">
+                            @Html.LabelFor(o => o.State)
+                        </label>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.State, new { @class="form-control", @placeholder="Wprowadź województwo" })
+                            @Html.ValidationMessageFor(o => o.State)
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-4 col-form-label">
+                            @Html.LabelFor(o => o.Town)
+                        </label>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.Town, new { @class="form-control", @placeholder="Wprowadź miejscowość" })
+                            @Html.ValidationMessageFor(o => o.Town)
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-4 col-form-label">
+                            @Html.LabelFor(o => o.Street)
+                        </label>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.Street, new { @class="form-control", @placeholder="Wprowadź ulicę" })
+                            @Html.ValidationMessageFor(o => o.Street)
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-4 col-form-label">
+                            @Html.LabelFor(o => o.ZipCode)
+                        </label>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.ZipCode, new { @class="form-control", @placeholder="Wprowadź kod pocztowy" })
+                            @Html.ValidationMessageFor(o => o.ZipCode)
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-danger sign-in-button float-end">Potwierdź płatność</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

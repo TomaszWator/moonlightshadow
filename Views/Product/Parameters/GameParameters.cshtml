@@ -1,0 +1,31 @@
+<div class="product-parameters-group ">
+    <div class="float-start m-0 p-0">Data premiery:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.ReleaseDate.ToString("MM/dd/yyyy") r.</div>
+</div>
+<br />
+<div class="product-parameters-group ">
+    <div class="float-start m-0 p-0">Platforma:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Platform</div>
+</div>
+<br />
+<div class="product-parameters-group ">
+    <div class="float-start m-0 p-0">System operacyjny:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.OperatingSystem</div>
+</div>
+<br />
+<div class="product-parameters-group ">
+    <div class="float-start m-0 p-0">Minimalne wymagania karty graficznej:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.GraphicsCardRequirements</div>
+</div>
+<br />
+<div class="product-parameters-group ">
+    <div class="float-start m-0 p-0">Wymagana ilość ramu:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.RamRequirements</div>
+</div>
+<br />
+<div class="product-parameters-group ">
+    <div class="float-start m-0 p-0">Języki:</div>
+    <div class="float-end m-0 p-0 fw-bold">
+        @string.Join(", ", ViewBag.Product.Languages);
+    </div>
+</div>

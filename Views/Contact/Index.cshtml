@@ -1,0 +1,80 @@
+@model MoonlightShadow.ViewModels.ContactViewModel
+@{
+    ViewData["Title"] = "Kontakt";
+}
+
+<div class="row page">
+    <div class="col-md-12">
+        <div class="contact-panel">
+            <div class="contact-panel-title text-center"
+                style="background-image: url('https://images.unsplash.com/photo-1498230870289-7561110a6e69?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                <i class="bi bi-person-lines-fill"></i>
+                <br />
+                Kontakt
+            </div>
+            <div class="contact-panel-description row">
+                <div class="contact-panel-description-info col-md-6">
+                    <div class="contact-panel-description-info-title">
+                        <i class="bi bi-telephone-fill"></i>
+                        Dane kontaktowe
+                        <hr />
+                    </div>
+
+                    Numer telefonu: <span class="text-end">543 543 321</span>
+                    <br />
+                    Mail: <span class="text-end">administrator@MoonlightShadow.pl</span>
+                    <br />
+                    Miejscowość: <span class="text-end">Warszawa</span>
+                    <br />
+                    Kod pocztowy: <span class="text-end">11-111</span>
+                    <br />
+                    Ulica: <span class="text-end">Piłsudskiego 4/5/1</span>
+                    <br />
+                    NIP: <span class="text-end">1111111111</span>
+                </div>
+                <div class="contact-panel-description-form col-md-6">
+                    <div class="contact-panel-description-form-title">
+                        <i class="bi bi-chat-left-dots-fill"></i>
+                        Formularz
+                        <hr />
+                    </div>
+                    <div class="row">
+                        @using (Html.BeginForm("Index", "Contact", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Name, new { @class="form-label" })
+                                @Html.TextBoxFor(o => o.Name, new { @class="form-control", @placeholder="Wpisz imię" })
+                                @Html.ValidationMessageFor(o => o.Name)
+                            </div>
+                            <p></p>
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Email, new { @class="form-label" })
+                                @Html.TextBoxFor(o => o.Email, new { @class="form-control", @placeholder="Podaj adres email" })
+                                @Html.ValidationMessageFor(o => o.Email)
+                            </div>
+                            <p></p>
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Subject, new { @class="form-label" })
+                                @Html.TextBoxFor(o => o.Subject, new { @class="form-control", @placeholder="Wpisz temat" })
+                                @Html.ValidationMessageFor(o => o.Subject)
+                            </div>
+                            <p></p>
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Message, new { @class="form-label" })
+                                @Html.TextAreaFor(o => o.Message, 4, 10, new { @class="form-control", @placeholder="Twoja wiadomość..." })
+                                @Html.ValidationMessageFor(o => o.Message)
+                            </div>
+                            <p></p>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-light float-end">Wyślij wiadomość</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

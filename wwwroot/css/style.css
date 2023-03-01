@@ -1,0 +1,651 @@
+body {
+    font-family: 'New Tegomin', serif;
+    background-color: #adb5bd8e;
+    overflow-x: hidden;
+}
+
+a {
+    cursor: pointer;
+}
+
+a.brand-name {
+    text-decoration: none;
+    font-size: 20px;
+    padding-bottom: 0 !important;
+}
+
+.navbar-menu {
+    vertical-align: middle;
+    font-size: 18px;
+}
+
+.nav-item {
+    margin-right: 10px;
+}
+
+.nav-link {
+    color: #494949 !important;
+}
+
+.nav-link:hover {
+    color: #000000 !important;
+}
+
+a.brand-name:hover {
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+    text-decoration: none;
+}
+
+/* --------------MENU------------- */
+
+.menu-card {
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+.menu-title {
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    padding-top: 65px;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.527), 0px 0px 1px rgba(0, 0, 0, 0.459), 1px 1px 1px rgba(0, 0, 0, 0.507);
+}
+
+.menu-search {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 30px;
+    color: dimgray;
+    text-align: center;
+    padding-top: 65px;
+    text-shadow: -1px -1px 2px white, 0px 0px 2px white, 1px 1px 2px white;
+}
+
+.input-search {
+    padding-left: 42px;
+}
+
+.content {
+    height: 180px;
+    background-size: 120% !important;
+    background-repeat: repeat;
+    background-position: center center;
+    background-size: contain;
+    background-image: url('./img/ShiroQueen.jpg');
+}
+
+.content:hover {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+    background-size: 121% !important;
+}
+
+.main-logo {
+    height: 180px;
+    background-size: 120%;
+    background-repeat: no-repeat;
+    background-position: center 0px;
+    background-color: white;
+}
+
+.main-logo:hover {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+    background-size: 122%;
+}
+
+/* --------------SLIDER------------- */
+
+.recommend {
+    margin-top: 40px;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.title {
+    font-size: 25px;
+    color: black;
+    width: 100%;
+    background: white;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.155);
+}
+
+.product-card {
+    border-radius: 10px;
+    border: 2px solid white;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.155);
+}
+
+.product-card:hover {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+}
+
+.image {
+    height: 400px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    background-color: white !important;
+}
+
+.description {
+    min-height: 100px;
+    background-color: whitesmoke;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.product {
+    height: 70px;
+}
+
+.button {
+    font-size: 10px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.btn-open-ofert {
+    height: auto;
+    background-color: transparent;
+    margin-right: 10px;
+}
+
+.btn-open-ofert:hover {
+    color: white !important;
+}
+
+.btn-buy-now {
+    height: auto;
+    background-color: transparent;
+    margin-left: 10px;
+}
+
+.btn-buy-now:hover {
+    color: white !important;
+}
+
+/* --------------FOOTER------------- */
+
+.footer {
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+}
+
+/* --------------DEFAULT PAGE------------- */
+
+.page {
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+@media (max-width: 767px) {
+    .page {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+}
+
+@media (max-width: 575px) {
+    .page {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+/* --------------CATEGORY PAGE------------- */
+
+
+
+.filters {
+    min-height: 400px;
+    border: 2px solid white;
+    background-color: white;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.155);
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.wallpaper-title {
+    height: 80px;
+    background-repeat: repeat;
+    background-position: center center;
+    background-size: cover;
+    font-size: 40px;
+    color: white;
+    text-shadow: -2px -2px 1px rgba(0, 0, 0, 0.527), -1px -1px 1px rgba(0, 0, 0, 0.527), 0px 0px 1px rgba(0, 0, 0, 0.459), 1px 1px 1px rgba(0, 0, 0, 0.507), 2px 2px 1px rgba(0, 0, 0, 0.527);
+    text-align: center;
+    vertical-align: center;
+    background-color: rgba(0, 0, 0, 0.808);
+}
+
+.filter-menu {
+    min-height: 40px;
+}
+
+.filter-menu-item {
+    color: black;
+    margin-left: 40px;
+    cursor: pointer;
+    display: inline;
+    font-size: 25px;
+    padding-bottom: 5px;
+}
+
+.filter-menu-item:hover {
+    border-bottom: 2px solid black;
+}
+
+.filter-menu-item.active {
+    border-bottom: 2px solid black;
+}
+
+.filter-description {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-left: 0;
+    margin-right: 0;
+    min-height: 266px;
+    background-color: #b9b9b9;
+}
+
+.filter-description-item {
+    margin: 5px;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: white;
+    border-radius: 5px;
+    height: 240px;
+    padding: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+}
+
+.filter-box-title {
+    width: 100%;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #b2b3b0;
+}
+
+.group-input {
+    padding-top: 5px;
+}
+
+.input-price {
+    width: 50px;
+}
+
+/* --------------PRODUCT PAGE------------- */
+
+.main-label {
+    height: auto;
+    background-color: #ffffff;
+    font-size: 20px;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+}
+
+.product-title {
+    font-size: 25px;
+}
+
+@media (max-width: 767px) {
+    .shop-button {
+        float: none;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+
+.btn-shop-control {
+    font-size: 18px !important;
+}
+
+.product-slider {
+    height: 400px;
+    background: white;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+}
+
+.slider-image {
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: 100%;
+}
+
+.slider-arrow {
+    color: #7a7a7a;
+}
+
+.product-price-panel {
+    min-height: 50px;
+    background-color: white;
+    padding: 20px;
+}
+
+.price {
+    font-size: 25px;
+}
+
+/* --------------PRODUCT PAGE - PARAMETERS------------- */
+
+.product-parameters {
+    min-height: 400px;
+    background: rgb(0, 0, 0);
+    color: white;
+    padding: 20px;
+}
+
+.product-parametrs-title {
+    font-size: 30px;
+}
+
+.product-parametrs-group {
+    background-color: transparent !important;
+}
+
+/* --------------PRODUCT PAGE - DESCRIPTION------------- */
+
+.product-description {
+    min-height: 400px;
+    background: #6c757d;
+    color: white;
+    padding: 20px;
+}
+
+.product-description-title {
+    font-size: 30px;
+}
+
+.seller-description {
+    min-height: 200px;
+    background: rgb(163, 163, 163);
+    padding: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+}
+
+.seller-description-title {
+    font-size: 30px;
+}
+
+.seller-description-rating {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.seller-description-rating-box {
+    min-height: 150px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #ffffff;
+    box-shadow: -2px -2px 1px rgba(0, 0, 0, 0.227), -1px -1px 1px rgba(0, 0, 0, 0.227), 0px 0px 1px rgba(0, 0, 0, 0.259), 1px 1px 1px rgba(0, 0, 0, 0.207), 2px 2px 1px rgba(0, 0, 0, 0.227);
+}
+
+@media (max-width: 767px) {
+    .seller-description-rating-box {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+.seller-description-rating-icon {
+    font-size: 50px;
+}
+
+.similar-product {
+    min-height: 500px;
+    background: rgb(8, 8, 29);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+    margin-bottom: 30px;
+}
+
+.similar-product-title {
+    padding: 20px;
+    font-size: 30px;
+    color: white;
+}
+
+.similar-product-slider {
+    margin-top: 30px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.similar-product-slider-button {
+    font-size: 30px;
+}
+
+/* --------------LOG IN / SIGN IN - DESCRIPTION------------- */
+
+.log-in-panel
+{
+    min-height: 400px;
+    background: white;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+    margin-bottom: 20px;
+}
+
+.log-in-panel-title
+{
+    font-size: 30px;
+}
+
+.log-in-button 
+{
+    width: 100%;
+}
+
+.sign-in-panel 
+{
+    min-height: 200px;
+    background: white;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+}
+
+.sign-in-panel-title
+{
+    font-size: 30px;
+}
+
+.margin
+{
+    height:  400px;
+}
+
+/* --------------CART PAGE------------- */
+
+.shoping-cart-panel {
+    background-color: #6c757d;
+    min-height: 200px;
+    margin-bottom: 20px;
+    border: 1px solid white;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+}
+
+.shoping-cart-panel-title {
+    min-height: 100px;
+    background: rgb(221, 221, 221);
+    font-size: 30px;
+    background-size: cover;
+    background-position: center center !important;
+    background-repeat: no-repeat;
+}
+
+.shopping-cart-panel-summary {
+    padding: 20px;
+}
+
+.shopping-cart-panel-summary .table {
+    color: white;
+}
+
+.shopping-cart-panel-sum-price {
+    margin-top: 20px;
+    background-color: white;
+    min-height: 50px;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.watched-panel {
+    background-color: rgb(95, 95, 95);
+    min-height: 120px;
+    margin-bottom: 20px;
+    border: 1px solid white;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+}
+
+.watched-panel-title {
+    height: 100px;
+    background: white;
+    font-size: 30px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.watched-panel-summary {
+    padding: 20px;
+}
+
+.watched-panel-summary .table {
+    color: white;
+}
+
+.action-button 
+{
+    color: white !important;
+}
+
+.action-button:hover
+{
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.335);
+}
+
+/* --------------PAYMENT PAGE------------- */
+
+.payment-panel {
+    background-color: #6c757d;
+    min-height: 300px;
+    margin-bottom: 20px;
+    border: 1px solid white;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+}
+
+.payment-panel-title {
+    min-height: 100px;
+    background: white;
+    font-size: 30px;
+    background-size: cover;
+    background-position: center -40px;
+    background-repeat: no-repeat;
+}
+
+.payment-panel-method {
+    padding: 20px;
+    min-height: 200px;
+    color: white;
+}
+
+.payment-panel-method-title {
+    font-size: 30px;
+}
+
+/* --------------CONTACT PAGE------------- */
+
+.contact-panel {
+    min-height: 300px;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+    border: 1px solid white;
+}
+
+.contact-panel-title {
+    height: 100px;
+    background: white;
+    font-size: 30px;
+    background-size: cover;
+    background-position: 50px center;
+    background-repeat: no-repeat;
+}
+
+.contact-panel-description {
+    color: white;
+    min-height: 300px;
+    margin: 0;
+}
+
+.contact-panel-description-info-title {
+    font-size: 30px;
+}
+
+.contact-panel-description-info {
+    padding: 20px;
+    font-size: 20px;
+    background-color: #6c757d;
+}
+
+.contact-panel-description-form-title {
+    font-size: 30px;
+}
+
+.contact-panel-description-form {
+    font-size: 20px;
+    min-height: 300px;
+    padding: 20px;
+    background-color: black;
+}
+
+/* --------------ACCOUNT PAGE------------- */
+
+.account-panel
+{
+    min-height: 400px;
+    background: white;
+    margin-right: 5px;
+    margin-left: 0px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+    margin-bottom: 20px;
+}
+
+.account-title
+{
+    font-size: 30px;
+}
+
+.account-panel 
+{
+    min-height: 200px;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
+    margin-bottom: 20px;
+}

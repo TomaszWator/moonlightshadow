@@ -1,0 +1,71 @@
+@model MoonlightShadow.ViewModels.SignUpViewModel;
+@{
+    Layout = "_LayoutWithoutFooter";
+    ViewData["Title"] = "Rejestracja";
+}
+
+@await Html.PartialAsync("~/Views/SignUp/SignUpModals/ConfirmSignUpMailSendModal.cshtml")
+
+@if (TempData.ContainsKey("ShowModal"))
+{
+    string modalName = (string)TempData["ShowModal"];
+                        
+    <script>
+        $(document).ready(function () {
+            $('#@modalName').modal("show");
+        });
+    </script>
+}
+
+<div class="page row">
+    <div class="col-sm-12 col-md-6 col-lg-7">
+        <div class="sign-in-panel">
+            <div class="sign-in-panel-title">
+                <i class="bi bi-journal-text"></i>
+                Rejestracja
+                <hr />
+            </div>
+
+            <div class="sign-in-panel-input">
+                @using (Html.BeginForm("Index", "SignUp", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3 row">
+                        @Html.LabelFor(o => o.Login, new { @class="col-sm-4 col-form-label" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.Login, new { @class="form-control", @placeholder="administrator już zajęte" })
+                            @Html.ValidationMessageFor(o => o.Login)
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        @Html.LabelFor(o => o.Email, new { @class="col-sm-4 col-form-label" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.Email, new { @class="form-control", @placeholder="email@example.com" })
+                            @Html.ValidationMessageFor(o => o.Email)
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        @Html.LabelFor(o => o.Password, new { @class="col-sm-4 col-form-label" })
+                        <div class="col-sm-8">
+                            @Html.PasswordFor(o => o.Password, new { @class="form-control", @placeholder="admin nie polecamy" })
+                            @Html.ValidationMessageFor(o => o.Password)
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        @Html.LabelFor(o => o.RepetedPassword, new { @class="col-sm-4 col-form-label" })
+                        <div class="col-sm-8">
+                            @Html.PasswordFor(o => o.RepetedPassword, new { @class="form-control", @placeholder="powtórz hasło" })
+                            @Html.ValidationMessageFor(o => o.RepetedPassword)
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-sm-12">
+                            <button type="hidden" class="btn btn-secondary sign-in-button float-end">Zarejestruj się</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

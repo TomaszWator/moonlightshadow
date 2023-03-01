@@ -1,0 +1,89 @@
+@model MoonlightShadow.ViewModels.LoginViewModel
+@{
+    Layout = "_LayoutWithoutFooter";
+    ViewData["Title"] = "Logowanie";
+}
+
+@await Html.PartialAsync("~/Views/Login/LoginModals/RemindMePasswordModal.cshtml", Model)
+@await Html.PartialAsync("~/Views/Login/LoginModals/ConfirmRemindMePasswordModal.cshtml", Model)
+@await Html.PartialAsync("~/Views/Login/LoginModals/ConfirmRemindMePasswordMailSendModal.cshtml", Model)
+@await Html.PartialAsync("~/Views/Login/LoginModals/AbortRemindMePasswordModal.cshtml", Model)
+@await Html.PartialAsync("~/Views/Login/LoginModals/ConfirmVerificationMailModal.cshtml", Model)
+@await Html.PartialAsync("~/Views/Login/LoginModals/AbortVerificationMailModal.cshtml", Model)
+
+@if (TempData.ContainsKey("ShowModal"))
+{
+    string modalName = (string)TempData["ShowModal"];
+                        
+    <script>
+        $(document).ready(function () {
+            $('#@modalName').modal("show");
+        });
+    </script>
+}
+
+<div class="page row">
+    <div class="col-sm-12 col-md-6 col-lg-5">
+        <div class="log-in-panel">
+            <div class="log-in-panel-title">
+                <i class="bi bi-journal-check"></i>
+                Logowanie
+                <hr />
+            </div>
+
+            <div class="log-in-panel-input">
+                @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3 row">
+                        @Html.LabelFor(o => o.LoginFormViewModel.Email, new { @class="col-sm-4 col-form-label" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(o => o.LoginFormViewModel.Email, new { @class="form-control", @placeholder="email@example.com" })
+                            @Html.ValidationMessageFor(o => o.LoginFormViewModel.Email)
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        @Html.LabelFor(o => o.LoginFormViewModel.Password, new { @class="col-sm-4 col-form-label" })
+                        <div class="col-sm-8">
+                            @Html.PasswordFor(o => o.LoginFormViewModel.Password, new { @class="form-control", @placeholder="podpowiedź: nie admin" })
+                            @Html.ValidationMessageFor(o => o.LoginFormViewModel.Password)
+                        </div>
+                    </div>
+
+                    <input id="TypeOfModel" name="TypeOfModel" type="hidden" value="LoginFormViewModel">
+
+                    <div class="mb-3 row">
+                        <a class="text-center" data-bs-toggle="modal" data-bs-target="#RemindMePassword">Przypomnij hasło</a>
+                    </div>
+
+                    @if ((bool)ViewData["MailRegisterVerified"] == false)
+                    {
+                        <div class="mb-3 row">
+                            <a class="text-center">Wyślij ponownie</a>
+                        </div>
+                    }
+
+                    <div class="mb-3 row">
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-dark log-in-button">Zaloguj się</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-danger log-in-button">Zaloguj się przez Google</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-primary log-in-button">Zaloguj się przez Facebook</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

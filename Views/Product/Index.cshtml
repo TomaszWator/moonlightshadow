@@ -1,0 +1,338 @@
+@{
+    ViewData["Title"] = "Produkt";
+}
+
+@await Html.PartialAsync("~/Views/Product/ProductModals/ConfirmAddToCartModal.cshtml")
+@await Html.PartialAsync("~/Views/Product/ProductModals/ConfirmAddToFollowedModal.cshtml")
+@await Html.PartialAsync("~/Views/Product/ProductModals/ConfirmAddToRecomendedModal.cshtml")
+
+@if (TempData.ContainsKey("ShowModal"))
+{
+    string modalName = (string)TempData["ShowModal"];
+                        
+    <script>
+        $(document).ready(function () {
+            $('#@modalName').modal("show");
+        });
+    </script>
+}
+
+<div class="row page">
+    <div class="main-label col-md-12">
+        <div class="product-title float-start d-inline"> @ViewBag.Product.Name </div>
+        <div class="float-end d-inline">
+            @if (User.Identity.IsAuthenticated)
+            {
+                @if(ViewBag.isRecomended)
+                {
+                    <a class="btn btn-dark btn-shop-control" asp-controller="Cart" asp-action="RemoveFromRecomended" asp-route-category="@ViewBag.Product.Category" asp-route-id="@ViewBag.Product.Id" asp-route-returnUrl="@ViewBag.returnUrl">
+                        <i class="bi bi-star-fill"></i>
+                        Szkaluj
+                    </a>
+                }
+                else
+                {
+                    <a class="btn btn-outline-dark btn-shop-control" asp-controller="Cart" asp-action="AddToRecomended" asp-route-category="@ViewBag.Product.Category" asp-route-id="@ViewBag.Product.Id" asp-route-returnUrl="@ViewBag.returnUrl">
+                        <i class="bi bi-star"></i>
+                        Poleć
+                    </a>
+                }
+
+                @if(ViewBag.isFollowed)
+                {
+                    <a class="btn btn-dark btn-shop-control" asp-controller="Cart" asp-action="RemoveFromFollowed" asp-route-category="@ViewBag.Product.Category" asp-route-id="@ViewBag.Product.Id" asp-route-returnUrl="@ViewBag.returnUrl">
+                        <i class="bi bi-pin-angle-fill"></i>
+                        Ukryj
+                    </a>
+                }
+                else
+                {
+                    <a class="btn btn-outline-dark btn-shop-control" asp-controller="Cart" asp-action="AddToFollowed" asp-route-category="@ViewBag.Product.Category" asp-route-id="@ViewBag.Product.Id" asp-route-returnUrl="@ViewBag.returnUrl">
+                        <i class="bi bi-pin-angle"></i>
+                        Obserwuj
+                    </a>
+                }
+            }
+        </div>
+    </div>
+    <div class="product-slider col-md-12">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @{
+                    var firstActive = "";
+                }
+                @for (int i = 0; i < ViewBag.Product.ImagePath.Count; i++)
+                {
+                    if (i == 0) firstActive = "active";
+
+                    <div class="carousel-item @firstActive">
+                        <div class="slider-image" style="background-image: url('@ViewBag.Product.ImagePath[i]');">
+                        </div>
+                    </div>
+
+                    firstActive = "";
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="bi bi-caret-left-fill fs-2 slider-arrow" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="bi bi-caret-right-fill fs-2 slider-arrow" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="product-price-panel col-md-12 d-inline">
+        <div class="row">
+            <div class="price d-inline text-sm-center text-md-start col-sm-12 col-md-6">
+                Cena: @ViewBag.Product.Price.ToString() zł
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="shop-button float-md-end">
+                    <a class="btn btn-secondary btn-shop-control" asp-controller="Cart" asp-action="AddOrder" asp-route-category="@(ViewBag.Product.Category)" asp-route-id="@(ViewBag.Product.Id)" asp-route-returnUrl="/Product/@(ViewBag.Product.Category)?id=@(ViewBag.Product.Id)">
+                        <i class="bi bi-cart-fill"></i>
+                        Dodaj do koszyka
+                    </a>
+
+                    <a class="btn btn-dark btn-shop-control" asp-controller="Cart" asp-action="BuyNow" asp-route-category="@(ViewBag.Action)" asp-route-id="@(ViewBag.Product.Id)">
+                        <i class="bi bi-cash-stack"></i>
+                        Kup teraz
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-parameters col-md-12 col-xl-6">
+        <div class="product-parametrs-title">
+            <i class="bi bi-cpu"></i>
+            Parametry
+        </div>
+        <hr />
+        <div class="product-parameters-group">
+            <div class="float-start m-0 p-0">Producent:</div>
+            <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Brand</div>
+        </div>
+        <br />
+
+        <div class="product-parameters-group">
+            <div class="float-start m-0 p-0">Model:</div>
+            <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Model</div>
+        </div>
+        <br />
+
+        @* Wyświetlenie parametów dla każdej kategorii *@
+
+
+        @if (ViewBag.Action == "Camera")
+        {
+            @await Html.PartialAsync("~/Views/Product/Parameters/CameraParameters.cshtml")
+        }
+
+        @if (ViewBag.Action == "Game")
+        {
+            @await Html.PartialAsync("~/Views/Product/Parameters/GameParameters.cshtml")
+        }
+
+        @if (ViewBag.Action == "Laptop")
+        {
+            @await Html.PartialAsync("~/Views/Product/Parameters/LaptopParameters.cshtml")
+        }
+
+        @if (ViewBag.Action == "Phone")
+        {
+            @await Html.PartialAsync("~/Views/Product/Parameters/PhoneParameters.cshtml")
+        }
+
+    </div>
+
+    <div class="product-description col-md-12 col-xl-6">
+        <div class="product-description-title">
+            <i class="bi bi-card-text"></i>
+            Opis
+        </div>
+        <hr />
+        @ViewBag.Product.Description
+    </div>
+
+    <div class="seller-description col-md-12">
+        <div class="seller-description-title text-center">
+            <i class="bi bi-person-bounding-box"></i>
+            Sprzedający
+        </div>
+
+        <div class="row seller-description-rating text-center">
+            <div class="col-md-4">
+                <div class="seller-description-rating-box">
+                    <i class="bi bi-pin-fill seller-description-rating-icon"></i>
+                    <br />
+                    @ViewBag.Product.FollowedQuantity
+                    <br />
+                    Obserwowanych produktów
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="seller-description-rating-box">
+                    <i class="bi bi-star-fill seller-description-rating-icon"></i>
+                    <br />
+                    @ViewBag.Product.RecomendedQuantity
+                    <br />
+                    Poleconych produktów
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="seller-description-rating-box">
+                    <i class="bi bi-cash-stack seller-description-rating-icon"></i>
+                    <br />
+                    @ViewBag.Product.BoughtQuantity
+                    <br />
+                    Kupionych produktów
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="similar-product col-md-12">
+        <div class="similar-product-title">
+            <i class="bi bi-plus-square-fill"></i>
+            Podobne oferty sprzedającego
+
+            <div class="similar-product-slider-button float-end d-inline">
+                <button class="btn btn-outline-light" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
+                    <span class="bi bi-caret-left-fill" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+
+                <button class="btn btn-outline-light" data-bs-target="#carouselExampleControls2" data-bs-slide="next">
+                    <span class="bi bi-caret-right-fill" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="carouselExampleControls2" class="carousel slide similar-product-slider" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img class="img-fluid" alt="100%x280"
+                                    src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d">
+                                <div class="card-body">
+                                    <h4 class="card-title">Special title treatment</h4>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img class="img-fluid" alt="100%x280"
+                                    src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
+                                <div class="card-body">
+                                    <h4 class="card-title">Special title treatment</h4>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img class="img-fluid" alt="100%x280"
+                                    src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                <div class="card-body">
+                                    <h4 class="card-title">Special title treatment</h4>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img class="img-fluid" alt="100%x280"
+                                    src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d">
+                                <div class="card-body">
+                                    <h4 class="card-title">Special title treatment</h4>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img class="img-fluid" alt="100%x280"
+                                    src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
+                                <div class="card-body">
+                                    <h4 class="card-title">Special title treatment</h4>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img class="img-fluid" alt="100%x280"
+                                    src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                <div class="card-body">
+                                    <h4 class="card-title">Special title treatment</h4>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img class="img-fluid" alt="100%x280"
+                                    src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d">
+                                <div class="card-body">
+                                    <h4 class="card-title">Special title treatment</h4>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img class="img-fluid" alt="100%x280"
+                                    src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
+                                <div class="card-body">
+                                    <h4 class="card-title">Special title treatment</h4>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img class="img-fluid" alt="100%x280"
+                                    src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                <div class="card-body">
+                                    <h4 class="card-title">Special title treatment</h4>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MoonlightShadow</title>
+    <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/style.css" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand brand-name" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/main-logo.png" class="d-inline-block align-text-top" alt="MoonlightShadow - logo"
+                        height="40px"></img>
+                    MoonlightShadow
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end navbar-menu" id="navbarNav">
+                    <ul class="navbar-nav">
+                    @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link active" asp-area="" asp-controller="Login" asp-action="Index" aria-current="page">
+                                    <i class="bi bi-person-bounding-box"></i>
+                                    Konto użytkownika
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" asp-area="" asp-controller="Logout" asp-action="Index" aria-current="page">
+                                    <i class="bi bi-fullscreen"></i>
+                                    Wyloguj się
+                                </a>
+                            </li>                            
+                        } 
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link active" asp-area="" asp-controller="Login" asp-action="Index" aria-current="page">
+                                    <i class="bi bi-person-check-fill"></i>
+                                    Zaloguj się
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" asp-area="" asp-controller="SignUp" asp-action="Index" aria-current="page">
+                                    <i class="bi bi-person-plus"></i>
+                                    Zarejestruj się
+                                </a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Cart" asp-action="Index" >
+                                <i class="bi bi-basket-fill"></i>
+                                Koszyk
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Contact" asp-action="Index" tabindex="-1" aria-disabled="true">
+                                <i class="bi bi-telegram"></i>
+                                Kontakt
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+
+</html>

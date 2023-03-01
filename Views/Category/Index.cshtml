@@ -1,0 +1,59 @@
+@{
+    ViewData["Title"] = ViewBag.Category;
+}
+
+
+@await Html.PartialAsync("~/Views/Product/ProductModals/ConfirmAddToCartModal.cshtml")
+
+@if (TempData.ContainsKey("ShowModal"))
+{
+    string modalName = (string)TempData["ShowModal"];
+                        
+    <script>
+        $(document).ready(function () {
+            $('#@modalName').modal("show");
+        });
+    </script>
+}
+
+<div class="row page">
+
+    @await Html.PartialAsync("~/Views/Category/Filters/GameFilter.cshtml")
+
+    @foreach (var product in ViewBag.Products)
+    {
+        <div class="col-md-6 col-lg-4 col-xxl-3">
+            <div class="product-card">
+                <div class="image" style="background-image: url('@product.ImagePath[0]');">
+                </div>
+                <div class="description">
+                    <div class="product">
+                        <div class="product-name d-inline">
+                            <p class="d-inline fs-4 m-0 p-0 text-success">@product.Name</p>
+                        </div>
+                        
+                        <div class="clearfix"></div>
+                        <div class="product-cost d-inline">
+                            <p class="d-inline float-start m-0 p-0">Cena produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 fw-bold text-danger">@product.Price zł</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="button row mt-2">
+                        <a class="col btn btn-success text-success btn-open-ofert"
+                            asp-controller="Cart" asp-action="AddOrder" asp-route-category="@product.Category" asp-route-id="@product.Id"
+                            asp-route-returnUrl="/Category/@product.Category">
+                            <i class="bi bi-bag-fill"></i>
+                            Dodaj do koszyka
+                        </a>
+                        <a asp-controller="Product" asp-action="@product.Category" asp-route-id="@product.Id"
+                        class="col btn btn-danger text-danger btn-buy-now">
+                            <i class="bi bi-clipboard-data"></i>
+                            Zobacz ofertę
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
