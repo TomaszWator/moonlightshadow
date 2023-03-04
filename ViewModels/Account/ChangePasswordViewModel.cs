@@ -5,9 +5,9 @@ namespace MoonlightShadow.ViewModels.Account
 {
     public class ChangePasswordViewModel
     {
-        [Display(Name = "Login: ")]
-        [Required(ErrorMessage = "Wprowadź login")]
-        public string Login { get; set; }
+        [Display(Name = "Email: ")]
+        [Required(ErrorMessage = "Wprowadź email")]
+        public string Email { get; set; }
 
         [Display(Name = "Stare hasło: ")]
         [Required(ErrorMessage = "Wprowadź hasło")]

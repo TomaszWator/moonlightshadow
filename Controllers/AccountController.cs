@@ -74,9 +74,9 @@ namespace MoonlightShadow.Controllers
                     return View(accountViewModel);
                 }
 
-                if (user.Login != accountViewModel.ChangePasswordViewModel.Login)
+                if (user.Email != accountViewModel.ChangePasswordViewModel.Email)
                 {
-                    ModelState.AddModelError("ChangePasswordViewModel.Login", "Podano zły login");
+                    ModelState.AddModelError("ChangePasswordViewModel.Email", "Podano zły login");
 
                     return View(accountViewModel);
                 }
