@@ -3,6 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
 using System;
 using MoonlightShadow;
+using System.ComponentModel.DataAnnotations;
 
 namespace MoonlightShadow.Models
 {
@@ -12,14 +13,23 @@ namespace MoonlightShadow.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
+        [Display(Name = "Nazwa produktu")]
+        [Required(ErrorMessage = "Wprowadź nazwę produktu")]
         public string Name { get; set; }
 
+        [Display(Name = "Cena")]
+        [Required(ErrorMessage = "Wprowadź cene produktu")]
         public decimal Price { get; set; }
 
+        [Display(Name = "Kategoria")]
         public string Category { get; set; }
 
+        [Display(Name = "Marka")]
+        [Required(ErrorMessage = "Wprowadź markę produktu")]
         public string Brand { get; set; }
 
+        [Display(Name = "Model")]
+        [Required(ErrorMessage = "Wprowadź model produktu")]
         public string Model { get; set; }
 
         public int RecomendedQuantity { get; set; }
@@ -32,6 +42,8 @@ namespace MoonlightShadow.Models
 
         public List<string> ImagePath { get; set; }
 
+        [Display(Name = "Opis")]
+        [Required(ErrorMessage = "Wprowadź opis produktu")]
         public string Description { get; set; }
 
         public override bool Equals(object obj)

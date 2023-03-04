@@ -65,7 +65,7 @@ namespace MoonlightShadow.Controllers
             ViewBag.Category = "Telefony";
             ViewBag.Cover = "https://images.unsplash.com/photo-1615391208061-2205dfea6b93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80";
 
-             ViewBag.Products = _phoneService.Get();
+            ViewBag.Products = _phoneService.Get();
 
             return View("~/Views/Category/Index.cshtml");
         }

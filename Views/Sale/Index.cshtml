@@ -1,0 +1,311 @@
+@model MoonlightShadow.ViewModels.Products.ProductsViewModel
+@{
+    ViewData["Title"] = "Sprzedaj";
+}
+
+@await Html.PartialAsync("~/Views/Sale/SaleModals/ConfirmSaleCameraModal.cshtml", Model)
+@await Html.PartialAsync("~/Views/Sale/SaleModals/ConfirmSaleGameModal.cshtml", Model)
+@await Html.PartialAsync("~/Views/Sale/SaleModals/ConfirmSaleLaptopModal.cshtml", Model)
+@await Html.PartialAsync("~/Views/Sale/SaleModals/ConfirmSalePhoneModal.cshtml", Model)
+
+@if (TempData.ContainsKey("ShowModal"))
+{
+    string modalName = (string)TempData["ShowModal"];
+                        
+    <script>
+        $(document).ready(function () {
+            $('#@modalName').modal("show");
+        });
+    </script>
+}
+
+<div class="page row">
+    <div class="col-sm-12 col-md-12 col-lg-6">
+        <div class="account-panel">
+            <div class="sign-in-panel-title">
+                <i class="bi bi-camera-fill"></i>
+                Wystaw aparat na sprzedaż
+                <hr />
+            </div>
+
+            <div class="sign-in-panel-input">
+                @using (Html.BeginForm("Index", "Sale", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 text-primary">Dane produktu</h6>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.Name)
+                                @Html.TextBoxFor(o => o.Camera.Name, new { @class="form-control", @placeholder="Wprowadź nazwę produktu" })
+                                @Html.ValidationMessageFor(o => o.Camera.Name)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.Price)
+                                @Html.TextBoxFor(o => o.Camera.Price, new { @class="form-control", @placeholder="Wprowadź cene produktu" })
+                                @Html.ValidationMessageFor(o => o.Camera.Price)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.Brand)
+                                @Html.TextBoxFor(o => o.Camera.Brand, new { @class="form-control", @placeholder="Wprowadź markę" })
+                                @Html.ValidationMessageFor(o => o.Camera.Brand)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.Model)
+                                @Html.TextBoxFor(o => o.Camera.Model, new { @class="form-control", @placeholder="Wprowadź model" })
+                                @Html.ValidationMessageFor(o => o.Camera.Model)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.Description)
+                                @Html.TextAreaFor(o => o.Camera.Description, new { @class="form-control", @placeholder="Wprowadź opis produktu" })
+                                @Html.ValidationMessageFor(o => o.Camera.Description)
+                            </div>
+                        </div>
+                    </div>
+
+                    <input id="TypeOfModel" name="TypeOfModel" type="hidden" value="Camera">
+
+                    <div class="row mt-4">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">Sprzedaj</button>
+                            </div>
+                        </div>
+                    </div>
+                }   
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-sm-12 col-md-12 col-lg-6">
+        <div class="account-panel">
+            <div class="sign-in-panel-title">
+                <i class="bi bi-play-circle-fill"></i>
+                Wystaw gre na sprzedaż
+                <hr />
+            </div>
+
+            <div class="sign-in-panel-input">
+                @using (Html.BeginForm("Index", "Sale", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 text-primary">Dane produktu</h6>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Game.Name)
+                                @Html.TextBoxFor(o => o.Game.Name, new { @class="form-control", @placeholder="Wprowadź nazwę produktu" })
+                                @Html.ValidationMessageFor(o => o.Game.Name)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Game.Price)
+                                @Html.TextBoxFor(o => o.Game.Price, new { @class="form-control", @placeholder="Wprowadź cene produktu" })
+                                @Html.ValidationMessageFor(o => o.Game.Price)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Game.Brand)
+                                @Html.TextBoxFor(o => o.Game.Brand, new { @class="form-control", @placeholder="Wprowadź markę" })
+                                @Html.ValidationMessageFor(o => o.Game.Brand)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Game.Model)
+                                @Html.TextBoxFor(o => o.Game.Model, new { @class="form-control", @placeholder="Wprowadź model" })
+                                @Html.ValidationMessageFor(o => o.Game.Model)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Game.Description)
+                                @Html.TextAreaFor(o => o.Game.Description, new { @class="form-control", @placeholder="Wprowadź opis produktu" })
+                                @Html.ValidationMessageFor(o => o.Game.Description)
+                            </div>
+                        </div>
+                    </div>
+
+                    <input id="TypeOfModel" name="TypeOfModel" type="hidden" value="Game">
+
+                    <div class="row mt-4">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">Sprzedaj</button>
+                            </div>
+                        </div>
+                    </div>
+                }   
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-6">
+        <div class="account-panel">
+            <div class="sign-in-panel-title">
+                <i class="bi bi-laptop"></i>
+                Wystaw laptop na sprzedaż
+                <hr />
+            </div>
+
+            <div class="sign-in-panel-input">
+                @using (Html.BeginForm("Index", "Sale", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 text-primary">Dane produktu</h6>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Laptop.Name)
+                                @Html.TextBoxFor(o => o.Laptop.Name, new { @class="form-control", @placeholder="Wprowadź nazwę produktu" })
+                                @Html.ValidationMessageFor(o => o.Laptop.Name)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Laptop.Price)
+                                @Html.TextBoxFor(o => o.Laptop.Price, new { @class="form-control", @placeholder="Wprowadź cene produktu" })
+                                @Html.ValidationMessageFor(o => o.Laptop.Price)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Laptop.Brand)
+                                @Html.TextBoxFor(o => o.Laptop.Brand, new { @class="form-control", @placeholder="Wprowadź markę" })
+                                @Html.ValidationMessageFor(o => o.Laptop.Brand)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Laptop.Model)
+                                @Html.TextBoxFor(o => o.Laptop.Model, new { @class="form-control", @placeholder="Wprowadź model" })
+                                @Html.ValidationMessageFor(o => o.Laptop.Model)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Laptop.Description)
+                                @Html.TextAreaFor(o => o.Laptop.Description, new { @class="form-control", @placeholder="Wprowadź opis produktu" })
+                                @Html.ValidationMessageFor(o => o.Laptop.Description)
+                            </div>
+                        </div>
+                    </div>
+
+                    <input id="TypeOfModel" name="TypeOfModel" type="hidden" value="Laptop">
+
+                    <div class="row mt-4">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">Sprzedaj</button>
+                            </div>
+                        </div>
+                    </div>
+                }   
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-6">
+        <div class="account-panel">
+            <div class="sign-in-panel-title">
+                <i class="bi bi-phone-fill"></i>
+                Wystaw telefon na sprzedaż
+                <hr />
+            </div>
+
+            <div class="sign-in-panel-input">
+                @using (Html.BeginForm("Index", "Sale", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 text-primary">Dane produktu</h6>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Phone.Name)
+                                @Html.TextBoxFor(o => o.Phone.Name, new { @class="form-control", @placeholder="Wprowadź nazwę produktu" })
+                                @Html.ValidationMessageFor(o => o.Phone.Name)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Phone.Price)
+                                @Html.TextBoxFor(o => o.Phone.Price, new { @class="form-control", @placeholder="Wprowadź cene produktu" })
+                                @Html.ValidationMessageFor(o => o.Phone.Price)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Phone.Brand)
+                                @Html.TextBoxFor(o => o.Phone.Brand, new { @class="form-control", @placeholder="Wprowadź markę" })
+                                @Html.ValidationMessageFor(o => o.Phone.Brand)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Phone.Model)
+                                @Html.TextBoxFor(o => o.Phone.Model, new { @class="form-control", @placeholder="Wprowadź model" })
+                                @Html.ValidationMessageFor(o => o.Phone.Model)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Phone.Description)
+                                @Html.TextAreaFor(o => o.Phone.Description, new { @class="form-control", @placeholder="Wprowadź opis produktu" })
+                                @Html.ValidationMessageFor(o => o.Phone.Description)
+                            </div>
+                        </div>
+                    </div>
+
+                    <input id="TypeOfModel" name="TypeOfModel" type="hidden" value="Phone">
+
+                    <div class="row mt-4">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">Sprzedaj</button>
+                            </div>
+                        </div>
+                    </div>
+                }   
+            </div>
+        </div>
+    </div>
+</div>
