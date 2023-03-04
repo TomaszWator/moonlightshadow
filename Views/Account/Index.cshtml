@@ -87,10 +87,10 @@
                     @Html.AntiForgeryToken()
 
                     <div class="mb-3 row">
-                        @Html.LabelFor(o => o.ChangePasswordViewModel.Login, new { @class="col-sm-4 col-form-label" })
+                        @Html.LabelFor(o => o.ChangePasswordViewModel.Email, new { @class="col-sm-4 col-form-label" })
                         <div class="col-sm-8">
-                            @Html.TextBoxFor(o => o.ChangePasswordViewModel.Login, new { @class="form-control", @placeholder="login jest w mailu ;)" })
-                            @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.Login)
+                            @Html.TextBoxFor(o => o.ChangePasswordViewModel.Email, new { @class="form-control", @placeholder="email" })
+                            @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.Email)
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -295,6 +295,4 @@
             </div>
         </div>
     </div>
-
-
 </div>
