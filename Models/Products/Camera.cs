@@ -25,8 +25,6 @@ namespace MoonlightShadow.Models.Products
 
         [Display(Name = "Jednostka rozdzielczości: ")]
         public string ResolutionUnit { get; set; }
-
-        public DateTime ReleaseDate { get; set; }
         
         [Display(Name = "Ilość megapikseli: ")]
         public double Megapiksels { get; set; }

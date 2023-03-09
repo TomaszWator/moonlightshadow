@@ -29,7 +29,7 @@
             </div>
 
             <div class="sign-in-panel-input">
-                @using (Html.BeginForm("Index", "Sale", FormMethod.Post))
+                @using (Html.BeginForm("Index", "Sale", FormMethod.Post, new { enctype ="multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="row">
@@ -69,11 +69,91 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group">
                                 @Html.LabelFor(o => o.Camera.Description)
                                 @Html.TextAreaFor(o => o.Camera.Description, new { @class="form-control", @placeholder="Wprowadź opis produktu" })
                                 @Html.ValidationMessageFor(o => o.Camera.Description)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                
+                                <input type="file" name="postedFiles" class="form-control" multiple placeholder="Dodaj zdjęcie produktu" />
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.Weight)
+                                @Html.TextBoxFor(o => o.Camera.Weight, new { @class="form-control", @placeholder="Wprowadź wagę produktu" })
+                                @Html.ValidationMessageFor(o => o.Camera.Weight)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.WeightUnit)
+                                @Html.TextBoxFor(o => o.Camera.WeightUnit, new { @class="form-control", @placeholder="Wprowadź jednostkę wagi" })
+                                @Html.ValidationMessageFor(o => o.Camera.WeightUnit)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.Dimensions.X)
+                                @Html.TextBoxFor(o => o.Camera.Dimensions.X, new { @class="form-control", @placeholder="Wprowadź rozmiar X" })
+                                @Html.ValidationMessageFor(o => o.Camera.Dimensions.X)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.Dimensions.Y)
+                                @Html.TextBoxFor(o => o.Camera.Dimensions.Y, new { @class="form-control", @placeholder="Wprowadź rozmiar Y" })
+                                @Html.ValidationMessageFor(o => o.Camera.Dimensions.Y)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.Dimensions.Z)
+                                @Html.TextBoxFor(o => o.Camera.Dimensions.Z, new { @class="form-control", @placeholder="Wprowadź rozmiar Z" })
+                                @Html.ValidationMessageFor(o => o.Camera.Dimensions.Z)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.DimensionUnit)
+                                @Html.TextBoxFor(o => o.Camera.DimensionUnit, new { @class="form-control", @placeholder="Wprowadź jednostkę rozmiaru" })
+                                @Html.ValidationMessageFor(o => o.Camera.DimensionUnit)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.Resolution)
+                                @Html.TextBoxFor(o => o.Camera.Resolution, new { @class="form-control", @placeholder="Wprowadź rozdzielczość produktu" })
+                                @Html.ValidationMessageFor(o => o.Camera.Resolution)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.ResolutionUnit)
+                                @Html.TextBoxFor(o => o.Camera.ResolutionUnit, new { @class="form-control", @placeholder="Wprowadź jednostkę rozdzielczości" })
+                                @Html.ValidationMessageFor(o => o.Camera.ResolutionUnit)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Camera.Megapiksels)
+                                @Html.TextBoxFor(o => o.Camera.Megapiksels, new { @class="form-control", @placeholder="Wprowadź ilość megapikseli" })
+                                @Html.ValidationMessageFor(o => o.Camera.Megapiksels)
                             </div>
                         </div>
                     </div>
@@ -142,11 +222,51 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group">
                                 @Html.LabelFor(o => o.Game.Description)
                                 @Html.TextAreaFor(o => o.Game.Description, new { @class="form-control", @placeholder="Wprowadź opis produktu" })
                                 @Html.ValidationMessageFor(o => o.Game.Description)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Game.OperatingSystem)
+                                @Html.TextBoxFor(o => o.Game.OperatingSystem, new { @class="form-control", @placeholder="Wprowadź system operacyjny" })
+                                @Html.ValidationMessageFor(o => o.Game.OperatingSystem)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Game.Platform)
+                                @Html.TextBoxFor(o => o.Game.Platform, new { @class="form-control", @placeholder="Wprowadź platformę do grania" })
+                                @Html.ValidationMessageFor(o => o.Game.Platform)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Game.Languages)
+                                @Html.TextBoxFor(o => o.Game.Languages, new { @class="form-control", @placeholder="Wprowadź dostępne języki gry" })
+                                @Html.ValidationMessageFor(o => o.Game.Languages)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Game.GraphicsCardRequirements)
+                                @Html.TextBoxFor(o => o.Game.GraphicsCardRequirements, new { @class="form-control", @placeholder="Wprowadź wymaganą kartę graficzną" })
+                                @Html.ValidationMessageFor(o => o.Game.GraphicsCardRequirements)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Game.RamRequirements)
+                                @Html.TextBoxFor(o => o.Game.RamRequirements, new { @class="form-control", @placeholder="Wprowadź wymaganą ilość ramu" })
+                                @Html.ValidationMessageFor(o => o.Game.RamRequirements)
                             </div>
                         </div>
                     </div>
@@ -214,11 +334,45 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group">
                                 @Html.LabelFor(o => o.Laptop.Description)
                                 @Html.TextAreaFor(o => o.Laptop.Description, new { @class="form-control", @placeholder="Wprowadź opis produktu" })
                                 @Html.ValidationMessageFor(o => o.Laptop.Description)
+                            </div>
+                        </div>
+
+                        <!--
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                Html.LabelFor(o => o.Laptop.Image)
+                                <input type="file" asp-for="Laptop.Image" class="form-control" placeholder="Dodaj zdjęcie produktu" />
+                                Html.ValidationMessageFor(o => o.Laptop.Image)
+                            </div>
+                        </div>
+                        -->
+                        
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Laptop.OperatingSystem)
+                                @Html.TextBoxFor(o => o.Laptop.OperatingSystem, new { @class="form-control", @placeholder="Wprowadź system operacyjny" })
+                                @Html.ValidationMessageFor(o => o.Laptop.OperatingSystem)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Laptop.Screen.Diagonal.Value)
+                                @Html.TextBoxFor(o => o.Laptop.Screen.Diagonal.Value, new { @class="form-control", @placeholder="Wprowadź przekątną ekranu" })
+                                @Html.ValidationMessageFor(o => o.Laptop.Screen.Diagonal.Value)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Laptop.Screen.Diagonal.UnitValue)
+                                @Html.TextBoxFor(o => o.Laptop.Screen.Diagonal.UnitValue, new { @class="form-control", @placeholder="Wprowadź jednostkę przekątnej ekranu" })
+                                @Html.ValidationMessageFor(o => o.Laptop.Screen.Diagonal.UnitValue)
                             </div>
                         </div>
                     </div>
@@ -286,7 +440,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group">
                                 @Html.LabelFor(o => o.Phone.Description)
                                 @Html.TextAreaFor(o => o.Phone.Description, new { @class="form-control", @placeholder="Wprowadź opis produktu" })

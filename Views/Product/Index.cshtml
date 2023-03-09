@@ -19,7 +19,7 @@
 
 <div class="row page">
     <div class="main-label col-md-12">
-        <div class="product-title float-start d-inline"> @ViewBag.Product.Name </div>
+        <div class="product-title float-start d-inline">@ViewBag.Product.Name</div>
         <div class="float-end d-inline">
             @if (User.Identity.IsAuthenticated)
             {
@@ -61,12 +61,12 @@
                 @{
                     var firstActive = "";
                 }
-                @for (int i = 0; i < ViewBag.Product.ImagePath.Count; i++)
+                @for (int i = 0; i < ViewBag.Product.ImagesPath.Count; i++)
                 {
                     if (i == 0) firstActive = "active";
 
                     <div class="carousel-item @firstActive">
-                        <div class="slider-image" style="background-image: url('@ViewBag.Product.ImagePath[i]');">
+                        <div class="slider-image" style="background-image: url('@ViewBag.Product.ImagesPath[i]');">
                         </div>
                     </div>
 

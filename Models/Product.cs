@@ -40,8 +40,8 @@ namespace MoonlightShadow.Models
 
         public string IdUserCreated { get; set; }
 
-        public List<string> ImagePath { get; set; }
-
+        public List<string> ImagesPath { get; set; }
+        
         [Display(Name = "Opis")]
         [Required(ErrorMessage = "Wprowadź opis produktu")]
         public string Description { get; set; }
@@ -72,7 +72,6 @@ namespace MoonlightShadow.Models
             FollowedQuantity = product.FollowedQuantity;
             BoughtQuantity = product.BoughtQuantity;
             IdUserCreated = product.IdUserCreated;
-            ImagePath = product.ImagePath;
             Description = product.Description;
         }
     }

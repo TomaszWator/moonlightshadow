@@ -12,6 +12,9 @@ using System.Security.Claims;
 using Extension.ValidModel;
 using MoonlightShadow.ViewModels;
 using MoonlightShadow.ViewModels.Products;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace MoonlightShadow.Controllers
 {
@@ -22,17 +25,22 @@ namespace MoonlightShadow.Controllers
         private readonly LaptopService _laptopService;
         private readonly PhoneService _phoneService;
         private readonly GameService _gameService;
+        private IHostingEnvironment _environment;
 
-        public SaleController(UserService userService, CameraService cameraService,
+        public SaleController(UserService userService, 
+            CameraService cameraService,
             LaptopService laptopService,
             PhoneService phoneService,
-            GameService gameService)
+            GameService gameService,
+            IHostingEnvironment environment)
         {
             _userService = userService;
             _cameraService = cameraService;
             _laptopService = laptopService;
             _phoneService = phoneService;
             _gameService = gameService;
+            _environment = environment;
+
         }
         
         [Authorize]
@@ -53,7 +61,7 @@ namespace MoonlightShadow.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(ProductsViewModel productsViewModel)
+        public async Task<IActionResult> Index(ProductsViewModel productsViewModel, List<IFormFile> postedFiles)
         {
             var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
             
@@ -71,7 +79,36 @@ namespace MoonlightShadow.Controllers
                     return View(productsViewModel);
                 }
 
-                _cameraService.Create(productsViewModel.Camera);
+                productsViewModel.Camera.Category = "Camera";
+                productsViewModel.Camera.IdUserCreated = user.Login;
+
+                var camera = _cameraService.Create(productsViewModel.Camera);
+
+                string wwwPath = _environment.WebRootPath;
+                string contentPath = _environment.ContentRootPath;
+        
+                string path = Path.Combine(_environment.WebRootPath, @"uploads\");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                camera.ImagesPath = new List<string>();
+
+                foreach (var file in postedFiles)
+                {
+                    if (file.Length > 0)
+                    {
+                        var extension = Path.GetExtension(file.FileName);
+                        
+                        using (var stream = new FileStream(path + camera.Id + extension, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+                        camera.ImagesPath.Add("../uploads/" + camera.Id + extension);
+                    }
+                }
+                _cameraService.Update(camera.Id, camera);
 
                 TempData.Remove("ShowModal");
                 TempData["ShowModal"] = "ConfirmSaleCamera";
