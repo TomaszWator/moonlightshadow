@@ -47,6 +47,9 @@ namespace MoonlightShadow.Controllers
             accountViewModel.ShippingDataViewModel = user.GetShippingDataViewModel();
             accountViewModel.BoughtOrders = user.BoughtOrders;
 
+            if(user.Privileges == true)
+                accountViewModel.UsersTransactions = _transactionService.Get();
+            
             return View(accountViewModel);
         }
 

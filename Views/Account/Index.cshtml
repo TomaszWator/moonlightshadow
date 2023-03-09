@@ -295,4 +295,72 @@
             </div>
         </div>
     </div>
+
+    @if(Model.UsersTransactions != null)
+    {
+        <div class="col-md-12">
+            <div class="shoping-cart-panel">
+                <div class="shoping-cart-panel-title text-center" style="background-image: url('https://images.unsplash.com/photo-1611988615248-5d4f0b9ac31e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');">
+                    <i class="bi bi-calendar4-week"></i>
+                    <br />
+                    Potwierdzenie otrzymanej płatności i wysyłki
+                </div>
+
+                <div class="shopping-cart-panel-summary">
+
+                    @if (Model.UsersTransactions.Count() == 0)
+                    {
+                        <div class="fs-2 fw-bold text-center">Brak zamówień</div>
+                    }
+                    else
+                    {
+                        <table class="table text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nazwa transakcji</th>
+                                    <th scope="col">List produktów</th>
+                                    <th scope="col">Cena</th>
+                                    <th scope="col">Potwierdź płatność</th>
+                                    <th scope="col">Potwierdź wysyłkę</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var userTransaction in Model.UsersTransactions)
+                                {
+                                    <tr>
+                                        <td>@userTransaction.BoughtOrder.TitleTransaction</td>
+                                        <td>
+                                            @foreach (var productItem in userTransaction.BoughtOrder.ProductItems)
+                                            {
+                                                @productItem.Name 
+                                                <br>
+                                            }
+                                        </td>
+                                        <td>@userTransaction.BoughtOrder.FullPrice zł</td>
+                                        @if(userTransaction.BoughtOrder.isPaymentVerified)
+                                        {
+                                            <td><span class="bi bi-check-square-fill"></span></td> 
+                                        }
+                                        else
+                                        {
+                                            <td><span class="bi bi-x-square-fill"></span></td>
+                                        }
+
+                                        @if(userTransaction.BoughtOrder.isShippment)
+                                        {
+                                            <td><span class="bi bi-check-square-fill"></span></td> 
+                                        }
+                                        else
+                                        {
+                                            <td><span class="bi bi-x-square-fill"></span></td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    }
 </div>
