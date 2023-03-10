@@ -9,24 +9,16 @@ namespace MoonlightShadow.Models.Products
 {
     public class Camera : Product
     {
-        [Display(Name = "Waga: ")]
-        public double Weight { get; set; }
-
-        [Display(Name = "Jednostka wagi: ")]
-        public string WeightUnit { get; set; }
-
-        public Dimension Dimensions { get; set; }
-
-        [Display(Name = "Jednostka rozmiaru: ")]
-        public string DimensionUnit { get; set; }
+        [Display(Name = "Przekątna ekranu ")]
+        public string ScreenDiagonal { get; set; }
 
         [Display(Name = "Rozdzielczość: ")]
-        public int Resolution { get; set; }
+        public string Resolution { get; set; }
 
         [Display(Name = "Jednostka rozdzielczości: ")]
         public string ResolutionUnit { get; set; }
-        
-        [Display(Name = "Ilość megapikseli: ")]
-        public double Megapiksels { get; set; }
+
+        [Display(Name = "Typ matrycy: ")]
+        public string MatrixType { get; set; }  
     }
 }

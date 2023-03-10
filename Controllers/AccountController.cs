@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using Extension.Security;
 using Extension.ValidModel;
 using System.Security.Claims;
+using WebApi.Services;
 
 namespace MoonlightShadow.Controllers
 {
@@ -21,12 +22,17 @@ namespace MoonlightShadow.Controllers
         private readonly UserService _userService;
         private readonly OrderService _orderService;
         private readonly TransactionService _transactionService;
+        private readonly MailSenderService _mailSenderService;
 
-        public AccountController(UserService userService, OrderService orderService, TransactionService transactionService)
+        public AccountController(UserService userService, 
+                                OrderService orderService, 
+                                TransactionService transactionService,
+                                MailSenderService mailSenderService)
         {
             _userService = userService;
             _orderService = orderService;
             _transactionService = transactionService;
+            _mailSenderService = mailSenderService;
         }
 
         [Authorize]
@@ -142,6 +148,58 @@ namespace MoonlightShadow.Controllers
             }
             
             return View(accountViewModel);
+        }
+
+        [HttpGet]
+        public IActionResult SetPaymentVerified(string id)
+        {
+            var transaction = _transactionService.GetBy(id);
+
+            transaction.BoughtOrder.isPaymentVerified = true;
+
+            _transactionService.Update(transaction);
+
+            var user = _userService.GetByLogin(transaction.UserId);
+
+            var boughtOrder = user.BoughtOrders.Where(boughtOrder => boughtOrder.TitleTransaction == transaction.BoughtOrder.TitleTransaction).FirstOrDefault();
+
+            var index = user.BoughtOrders.IndexOf(boughtOrder);
+
+            boughtOrder.isPaymentVerified = true;
+
+            user.BoughtOrders[index] = boughtOrder;
+
+            _userService.Update(user);
+
+            _mailSenderService.SendPaymentAcceptedMail(transaction.EmailShipping, transaction.BoughtOrder.TitleTransaction);
+
+            return RedirectToAction("Index", "Account");
+        }
+
+        [HttpGet]
+        public IActionResult SetShippment(string id)
+        {
+            var transaction = _transactionService.GetBy(id);
+
+            transaction.BoughtOrder.isShippment = true;
+
+            _transactionService.Update(transaction);
+
+            var user = _userService.GetByLogin(transaction.UserId);
+
+            var boughtOrder = user.BoughtOrders.Where(boughtOrder => boughtOrder.TitleTransaction == transaction.BoughtOrder.TitleTransaction).FirstOrDefault();
+
+            var index = user.BoughtOrders.IndexOf(boughtOrder);
+
+            boughtOrder.isShippment = true;
+
+            user.BoughtOrders[index] = boughtOrder;
+
+            _userService.Update(user);
+
+            _mailSenderService.SendShippingOnTheWayMail(transaction.EmailShipping, transaction.BoughtOrder.TitleTransaction);
+
+            return RedirectToAction("Index", "Account");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

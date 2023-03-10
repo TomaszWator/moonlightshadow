@@ -121,7 +121,36 @@ namespace MoonlightShadow.Controllers
                     return View(productsViewModel);
                 }
 
-                _gameService.Create(productsViewModel.Game);
+                productsViewModel.Game.Category = "Game";
+                productsViewModel.Game.IdUserCreated = user.Login;
+
+                var game = _gameService.Create(productsViewModel.Game);
+
+                string wwwPath = _environment.WebRootPath;
+                string contentPath = _environment.ContentRootPath;
+        
+                string path = Path.Combine(_environment.WebRootPath, @"uploads\");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                game.ImagesPath = new List<string>();
+
+                foreach (var file in postedFiles)
+                {
+                    if (file.Length > 0)
+                    {
+                        var extension = Path.GetExtension(file.FileName);
+                        
+                        using (var stream = new FileStream(path + game.Id + extension, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+                        game.ImagesPath.Add("../uploads/" + game.Id + extension);
+                    }
+                }
+                _gameService.Update(game.Id, game);
 
                 TempData.Remove("ShowModal");
                 TempData["ShowModal"] = "ConfirmSaleGame";
@@ -134,7 +163,36 @@ namespace MoonlightShadow.Controllers
                     return View(productsViewModel);
                 }
 
-                _laptopService.Create(productsViewModel.Laptop);
+                productsViewModel.Laptop.Category = "Laptop";
+                productsViewModel.Laptop.IdUserCreated = user.Login;
+
+                var laptop = _laptopService.Create(productsViewModel.Laptop);
+
+                string wwwPath = _environment.WebRootPath;
+                string contentPath = _environment.ContentRootPath;
+        
+                string path = Path.Combine(_environment.WebRootPath, @"uploads\");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                laptop.ImagesPath = new List<string>();
+
+                foreach (var file in postedFiles)
+                {
+                    if (file.Length > 0)
+                    {
+                        var extension = Path.GetExtension(file.FileName);
+                        
+                        using (var stream = new FileStream(path + laptop.Id + extension, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+                        laptop.ImagesPath.Add("../uploads/" + laptop.Id + extension);
+                    }
+                }
+                _laptopService.Update(laptop.Id, laptop);
 
                 TempData.Remove("ShowModal");
                 TempData["ShowModal"] = "ConfirmSaleLaptop";
@@ -147,7 +205,36 @@ namespace MoonlightShadow.Controllers
                     return View(productsViewModel);
                 }
 
-                _phoneService.Create(productsViewModel.Phone);
+                productsViewModel.Phone.Category = "Phone";
+                productsViewModel.Phone.IdUserCreated = user.Login;
+
+                var phone = _phoneService.Create(productsViewModel.Phone);
+
+                string wwwPath = _environment.WebRootPath;
+                string contentPath = _environment.ContentRootPath;
+        
+                string path = Path.Combine(_environment.WebRootPath, @"uploads\");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                phone.ImagesPath = new List<string>();
+
+                foreach (var file in postedFiles)
+                {
+                    if (file.Length > 0)
+                    {
+                        var extension = Path.GetExtension(file.FileName);
+                        
+                        using (var stream = new FileStream(path + phone.Id + extension, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+                        phone.ImagesPath.Add("../uploads/" + phone.Id + extension);
+                    }
+                }
+                _phoneService.Update(phone.Id, phone);
 
                 TempData.Remove("ShowModal");
                 TempData["ShowModal"] = "ConfirmSalePhone";

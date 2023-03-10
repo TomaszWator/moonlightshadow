@@ -343,7 +343,10 @@
                                         }
                                         else
                                         {
-                                            <td><span class="bi bi-x-square-fill"></span></td>
+                                            <td><a class="bi bi-x-square-fill action-button" 
+                                            asp-controller="Account" 
+                                            asp-action="SetPaymentVerified"
+                                            asp-route-id=@userTransaction.Id></a></td>
                                         }
 
                                         @if(userTransaction.BoughtOrder.isShippment)
@@ -352,7 +355,10 @@
                                         }
                                         else
                                         {
-                                            <td><span class="bi bi-x-square-fill"></span></td>
+                                            <td><a class="bi bi-x-square-fill action-button"
+                                            asp-controller="Account" 
+                                            asp-action="SetShippment"
+                                            asp-route-id=@userTransaction.Id></a></td>
                                         }
                                     </tr>
                                 }

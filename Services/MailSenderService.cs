@@ -78,5 +78,13 @@ namespace WebApi.Services
                 "Płatność zaksięgowana dla transakcji: " + TitleTransaction,
                 "Witaj drogi kliencie, <br>dziękujemy za dokonanie płatności. Realizacja zamówienia nastąpi w ciągu najbliższych 24 godzin");
         }
+
+        public void SendShippingOnTheWayMail(string toEmail, string TitleTransaction)
+        {
+            Send("MoonlightShadow@MoonlightShadow.com",
+                toEmail,
+                "Przesyłka dla transakcji: " + TitleTransaction + " została wysłana",
+                "Witaj drogi kliencie, <br>Zamówienie zostało przekazane do wysyłki. Paczka zostanie dostarczona w ciągu 3 dni");
+        }
     }
 }
