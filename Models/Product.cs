@@ -41,6 +41,8 @@ namespace MoonlightShadow.Models
         public string IdUserCreated { get; set; }
 
         public List<string> ImagesPath { get; set; }
+
+        public DateTime TimeCreated { get; set; }
         
         [Display(Name = "Opis")]
         [Required(ErrorMessage = "Wprowadź opis produktu")]

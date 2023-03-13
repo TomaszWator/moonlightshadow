@@ -81,13 +81,14 @@ namespace MoonlightShadow.Controllers
 
                 productsViewModel.Camera.Category = "Camera";
                 productsViewModel.Camera.IdUserCreated = user.Login;
+                productsViewModel.Camera.TimeCreated = DateTime.Now;
 
                 var camera = _cameraService.Create(productsViewModel.Camera);
 
                 string wwwPath = _environment.WebRootPath;
                 string contentPath = _environment.ContentRootPath;
         
-                string path = Path.Combine(_environment.WebRootPath, @"uploads\");
+                string path = Path.Combine(_environment.WebRootPath, @"uploads\camera\");
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -95,18 +96,20 @@ namespace MoonlightShadow.Controllers
 
                 camera.ImagesPath = new List<string>();
 
+                int fileNumber = 0;
+
                 foreach (var file in postedFiles)
                 {
-                    if (file.Length > 0)
-                    {
-                        var extension = Path.GetExtension(file.FileName);
+                    var extension = Path.GetExtension(file.FileName);
                         
-                        using (var stream = new FileStream(path + camera.Id + extension, FileMode.Create))
-                        {
-                            await file.CopyToAsync(stream);
-                        }
-                        camera.ImagesPath.Add("../uploads/" + camera.Id + extension);
+                    using (var stream = new FileStream(path + camera.Id + fileNumber + extension, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
                     }
+                    
+                    camera.ImagesPath.Add("../uploads/camera/" + camera.Id + fileNumber + extension);
+
+                    fileNumber++;
                 }
                 _cameraService.Update(camera.Id, camera);
 
@@ -123,13 +126,14 @@ namespace MoonlightShadow.Controllers
 
                 productsViewModel.Game.Category = "Game";
                 productsViewModel.Game.IdUserCreated = user.Login;
+                productsViewModel.Game.TimeCreated = DateTime.Now;
 
                 var game = _gameService.Create(productsViewModel.Game);
 
                 string wwwPath = _environment.WebRootPath;
                 string contentPath = _environment.ContentRootPath;
         
-                string path = Path.Combine(_environment.WebRootPath, @"uploads\");
+                string path = Path.Combine(_environment.WebRootPath, @"uploads/game/");
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -137,18 +141,20 @@ namespace MoonlightShadow.Controllers
 
                 game.ImagesPath = new List<string>();
 
+                int fileNumber = 0;
+
                 foreach (var file in postedFiles)
                 {
-                    if (file.Length > 0)
-                    {
-                        var extension = Path.GetExtension(file.FileName);
+                    var extension = Path.GetExtension(file.FileName);
                         
-                        using (var stream = new FileStream(path + game.Id + extension, FileMode.Create))
-                        {
-                            await file.CopyToAsync(stream);
-                        }
-                        game.ImagesPath.Add("../uploads/" + game.Id + extension);
+                    using (var stream = new FileStream(path + game.Id + fileNumber + extension, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
                     }
+                    
+                    game.ImagesPath.Add("../uploads/game/" + game.Id + fileNumber + extension);
+
+                    fileNumber++;
                 }
                 _gameService.Update(game.Id, game);
 
@@ -165,13 +171,14 @@ namespace MoonlightShadow.Controllers
 
                 productsViewModel.Laptop.Category = "Laptop";
                 productsViewModel.Laptop.IdUserCreated = user.Login;
+                productsViewModel.Laptop.TimeCreated = DateTime.Now;
 
                 var laptop = _laptopService.Create(productsViewModel.Laptop);
 
                 string wwwPath = _environment.WebRootPath;
                 string contentPath = _environment.ContentRootPath;
         
-                string path = Path.Combine(_environment.WebRootPath, @"uploads\");
+                string path = Path.Combine(_environment.WebRootPath, @"uploads\laptop\");
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -179,18 +186,20 @@ namespace MoonlightShadow.Controllers
 
                 laptop.ImagesPath = new List<string>();
 
+                int fileNumber = 0;
+
                 foreach (var file in postedFiles)
                 {
-                    if (file.Length > 0)
-                    {
-                        var extension = Path.GetExtension(file.FileName);
+                    var extension = Path.GetExtension(file.FileName);
                         
-                        using (var stream = new FileStream(path + laptop.Id + extension, FileMode.Create))
-                        {
-                            await file.CopyToAsync(stream);
-                        }
-                        laptop.ImagesPath.Add("../uploads/" + laptop.Id + extension);
+                    using (var stream = new FileStream(path + laptop.Id + fileNumber + extension, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
                     }
+                    
+                    laptop.ImagesPath.Add("../uploads/laptop/" + laptop.Id + fileNumber + extension);
+
+                    fileNumber++;
                 }
                 _laptopService.Update(laptop.Id, laptop);
 
@@ -207,13 +216,14 @@ namespace MoonlightShadow.Controllers
 
                 productsViewModel.Phone.Category = "Phone";
                 productsViewModel.Phone.IdUserCreated = user.Login;
+                productsViewModel.Phone.TimeCreated = DateTime.Now;
 
                 var phone = _phoneService.Create(productsViewModel.Phone);
 
                 string wwwPath = _environment.WebRootPath;
                 string contentPath = _environment.ContentRootPath;
         
-                string path = Path.Combine(_environment.WebRootPath, @"uploads\");
+                string path = Path.Combine(_environment.WebRootPath, @"uploads\phone\");
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -221,18 +231,20 @@ namespace MoonlightShadow.Controllers
 
                 phone.ImagesPath = new List<string>();
 
+                int fileNumber = 0;
+
                 foreach (var file in postedFiles)
                 {
-                    if (file.Length > 0)
-                    {
-                        var extension = Path.GetExtension(file.FileName);
+                    var extension = Path.GetExtension(file.FileName);
                         
-                        using (var stream = new FileStream(path + phone.Id + extension, FileMode.Create))
-                        {
-                            await file.CopyToAsync(stream);
-                        }
-                        phone.ImagesPath.Add("../uploads/" + phone.Id + extension);
+                    using (var stream = new FileStream(path + phone.Id + fileNumber + extension, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
                     }
+                    
+                    phone.ImagesPath.Add("../uploads/phone/" + phone.Id + fileNumber + extension);
+
+                    fileNumber++;
                 }
                 _phoneService.Update(phone.Id, phone);
 

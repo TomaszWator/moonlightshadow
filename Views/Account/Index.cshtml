@@ -322,6 +322,7 @@
                                     <th scope="col">Cena</th>
                                     <th scope="col">Potwierdź płatność</th>
                                     <th scope="col">Potwierdź wysyłkę</th>
+                                    <th scope="col">Adres doręczenia</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -360,6 +361,8 @@
                                             asp-action="SetShippment"
                                             asp-route-id=@userTransaction.Id></a></td>
                                         }
+
+                                        <td>@userTransaction.Address.ToString()</td>
                                     </tr>
                                 }
                             </tbody>

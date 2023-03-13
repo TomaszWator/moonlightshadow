@@ -141,10 +141,6 @@ namespace MoonlightShadow.Controllers
         [HttpGet]
         public IActionResult AcceptTransaction(string id)
         {
-            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-            if (userRole != "admin") return RedirectToAction("Index", "Account");
-
             var transaction = _transactionService.GetBy(id);
 
             transaction.BoughtOrder.isPaymentVerified = true;

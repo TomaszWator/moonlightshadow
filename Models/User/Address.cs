@@ -20,7 +20,7 @@ namespace MoonlightShadow.Models
 
         public override string ToString()
         {
-            return Country + " " + State + " " + Town + " " + Street + " " + ZipCode;
+            return Country + ", " + State + ",\n" + ZipCode + " " + Town + ",\n" + Street;
         }
     }
 }

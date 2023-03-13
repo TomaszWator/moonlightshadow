@@ -31,10 +31,6 @@ namespace MoonlightShadow.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
-            if(userRole != "admin") return RedirectToAction("Index", "Home");
-
             var administratorViewModel = new AdministratorViewModel();
             
             administratorViewModel.PaymentTransactions = _transactionService.Get().Where(o => o.BoughtOrder.isPaymentVerified == false);

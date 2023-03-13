@@ -141,7 +141,7 @@
             </div>
 
             <div class="sign-in-panel-input">
-                @using (Html.BeginForm("Index", "Sale", FormMethod.Post))
+                @using (Html.BeginForm("Index", "Sale", FormMethod.Post, new { enctype ="multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="row">
@@ -192,15 +192,7 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Zdjęcia</label>
-                                <input type="file" name="postedFiles" class="form-control" multiple placeholder="Dodaj zdjęcie produktu" required/> 
-                            </div>
-                        </div>
-
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                @Html.LabelFor(o => o.Game.OperatingSystem)
-                                @Html.TextBoxFor(o => o.Game.OperatingSystem, new { @class="form-control", @placeholder="Wprowadź system operacyjny", @required="required" })
-                                @Html.ValidationMessageFor(o => o.Game.OperatingSystem)
+                                <input type="file" name="postedFiles" class="form-control" multiple placeholder="Dodaj zdjęcie produktu" required /> 
                             </div>
                         </div>
 
@@ -214,9 +206,17 @@
 
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
-                                @Html.LabelFor(o => o.Game.Languages)
-                                @Html.TextBoxFor(o => o.Game.Languages, new { @class="form-control", @placeholder="Wprowadź dostępne języki gry", @required="required" })
-                                @Html.ValidationMessageFor(o => o.Game.Languages)
+                                @Html.LabelFor(o => o.Game.OperatingSystem)
+                                @Html.TextBoxFor(o => o.Game.OperatingSystem, new { @class="form-control", @placeholder="Wprowadź system operacyjny", @required="required" })
+                                @Html.ValidationMessageFor(o => o.Game.OperatingSystem)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Game.Processor)
+                                @Html.TextBoxFor(o => o.Game.Processor, new { @class="form-control", @placeholder="Wprowadź system operacyjny", @required="required" })
+                                @Html.ValidationMessageFor(o => o.Game.Processor)
                             </div>
                         </div>
 
@@ -233,6 +233,22 @@
                                 @Html.LabelFor(o => o.Game.RamRequirements)
                                 @Html.TextBoxFor(o => o.Game.RamRequirements, new { @class="form-control", @placeholder="Wprowadź wymaganą ilość ramu", @required="required" })
                                 @Html.ValidationMessageFor(o => o.Game.RamRequirements)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Game.HardDriveRequirements)
+                                @Html.TextBoxFor(o => o.Game.HardDriveRequirements, new { @class="form-control", @placeholder="Wprowadź wymaganą ilość ramu", @required="required" })
+                                @Html.ValidationMessageFor(o => o.Game.HardDriveRequirements)
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                @Html.LabelFor(o => o.Game.Languages)
+                                @Html.TextBoxFor(o => o.Game.Languages, new { @class="form-control", @placeholder="Wprowadź dostępne języki gry", @required="required" })
+                                @Html.ValidationMessageFor(o => o.Game.Languages)
                             </div>
                         </div>
                     </div>
@@ -260,7 +276,7 @@
             </div>
 
             <div class="sign-in-panel-input">
-                @using (Html.BeginForm("Index", "Sale", FormMethod.Post))
+                @using (Html.BeginForm("Index", "Sale", FormMethod.Post, new { enctype ="multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="row">
@@ -451,7 +467,7 @@
             </div>
 
             <div class="sign-in-panel-input">
-                @using (Html.BeginForm("Index", "Sale", FormMethod.Post))
+                @using (Html.BeginForm("Index", "Sale", FormMethod.Post, new { enctype ="multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="row">

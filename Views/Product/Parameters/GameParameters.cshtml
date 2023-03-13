@@ -1,8 +1,3 @@
-@* <div class="product-parameters-group ">
-    <div class="float-start m-0 p-0">Data premiery:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.ReleaseDate.ToString("MM/dd/yyyy") r.</div>
-</div>
-<br /> *@
 <div class="product-parameters-group ">
     <div class="float-start m-0 p-0">Platforma:</div>
     <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Platform</div>
@@ -11,6 +6,11 @@
 <div class="product-parameters-group ">
     <div class="float-start m-0 p-0">System operacyjny:</div>
     <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.OperatingSystem</div>
+</div>
+<br />
+<div class="product-parameters-group ">
+    <div class="float-start m-0 p-0">Processor:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Processor</div>
 </div>
 <br />
 <div class="product-parameters-group ">
@@ -24,8 +24,11 @@
 </div>
 <br />
 <div class="product-parameters-group ">
+    <div class="float-start m-0 p-0">Dysk twardy:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.HardDriveRequirements</div>
+</div>
+<br />
+<div class="product-parameters-group ">
     <div class="float-start m-0 p-0">Języki:</div>
-    <div class="float-end m-0 p-0 fw-bold">
-        @string.Join(", ", ViewBag.Product.Languages);
-    </div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Languages</div>
 </div>
