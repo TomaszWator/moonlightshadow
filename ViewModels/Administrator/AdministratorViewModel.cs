@@ -8,7 +8,7 @@ namespace MoonlightShadow.ViewModels.Administrator
 {
     public class AdministratorViewModel
     {
-        public IEnumerable<Transaction> PaymentTransactions { get; set; }
-        public IEnumerable<Transaction> ShippmentTransactions { get; set; }
+        public List<Transaction> UsersTransactions { get; set; }
+        public List<Contact> Contacts { get; set; }
     }
 }

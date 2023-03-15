@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Main page";
+    ViewData["Title"] = "Strona główna";
 }
 
 @await Html.PartialAsync("~/Views/Home/HomeModals/ConfirmAddToCartModal.cshtml")
@@ -37,12 +37,15 @@
         <div class="menu-card col-md-4 px-1 pt-1">
             <div class="main-logo" style="background-image: url('./img/main-logo.png'); background-size: contain">
                 <div class="menu-search">
-                    <div class="input-group">
-                        <input class="form-control input-search text-center" type="text" value="" placeholder="MoonlighShadow" />
-                        <span class="input-group-text">
-                            <i class="bi bi-search"></i>
-                        </span>
-                    </div>
+                    @using (Html.BeginForm("Index", "Search", FormMethod.Get))
+                    {
+                        <div class="input-group">
+                                <input name=query class="form-control input-search text-center" type="text" placeholder="MoonlighShadow" required/>
+                                <span class="input-group-text">
+                                    <input type="submit" value="Wyszukaj" class="bi bi-search"></input>
+                                </span>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -199,8 +202,3 @@
         }
     </div>
 </div>
-
-@* @foreach (var product in Model)
-    {
-
-    } *@

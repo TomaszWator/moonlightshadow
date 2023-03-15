@@ -305,7 +305,6 @@ a.brand-name:hover {
     }
 }
 
-
 .btn-shop-control {
     font-size: 18px !important;
 }
@@ -648,4 +647,19 @@ a.brand-name:hover {
     border-radius: 5px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.315);
     margin-bottom: 20px;
+}
+
+/* --------------SEARCH PAGE------------- */
+.search-cart-panel-title {
+    min-height: 100px;
+    background: rgb(221, 221, 221);
+    font-size: 30px;
+    background-size: cover;
+    background-position: center center !important;
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+    border: 2px solid white;
+    color: white;
+    text-shadow: -2px -2px 1px rgba(0, 0, 0, 0.527), -1px -1px 1px rgba(0, 0, 0, 0.527), 0px 0px 1px rgba(0, 0, 0, 0.459), 1px 1px 1px rgba(0, 0, 0, 0.507), 2px 2px 1px rgba(0, 0, 0, 0.527);
+    text-align: center;
 }

@@ -1,25 +1,24 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MoonlightShadow.Models;
 using MoonlightShadow.Services;
 
-
-// mongodb://MoonlightShadow:NUd1E0qRQpC9K76Z@moonlightshadowcluster-shard-00-00.6nlfm.mongodb.net:27017,moonlightshadowcluster-shard-00-01.6nlfm.mongodb.net:27017,moonlightshadowcluster-shard-00-02.6nlfm.mongodb.net:27017/MoonlightShadowDb?ssl=true&replicaSet=atlas-68mu11-shard-0&authSource=admin&retryWrites=true&w=majority
 namespace MoonlightShadow.Controllers
 {
-    public class HomeController : Controller
+    public class SearchController : Controller
     {
         private readonly CameraService _cameraService;
         private readonly LaptopService _laptopService;
         private readonly PhoneService _phoneService;
         private readonly GameService _gameService;
 
-        public HomeController(CameraService cameraService,
+        public SearchController(CameraService cameraService,
             LaptopService laptopService,
             PhoneService phoneService,
             GameService gameService)
@@ -61,14 +60,63 @@ namespace MoonlightShadow.Controllers
 
             return productList;
         }
-
-        public IActionResult Index()
+        
+        public string[] CleanAndDivideQueryFromSpaceAndComma(string query)
         {
+            query = Regex.Replace(query, @"\s+", " ");
+            query = Regex.Replace(query, ",{2,}", ",");
+
+            var queryList = query.ToLower()
+                                .Replace(", ", ",")
+                                .Replace(" ,", ",")
+                                .Split(new char[]{ ' ', ',' });
+
+            int i = 0;
+            foreach (var queryItem in queryList)
+            {
+                if(queryItem == " " || queryItem == ",")
+                {
+                    queryItem.Remove(i);
+                }
+                i++;
+            }
+
+            return queryList;
+        }
+
+        public List<Product> Searching(List<Product> productList, string[] queryList)
+        {
+            var foundProducts = new List<Product>();
+
+            foreach (var product in productList)
+            {
+                foreach(var queryItem in queryList)
+                {
+                    if(product.Name.ToLower().Contains(queryItem))
+                    {
+                        foundProducts.Add(product);
+                        break;
+                    }
+                }
+            }
+            return foundProducts;
+        }
+
+        [HttpGet]
+        public IActionResult Index(string query)
+        {
+            if(query == null)
+            {
+                ViewBag.foundProductList = new List<Product>();
+                return View();
+            }
+
             var productList = GetAllProducts();
-            
-            ViewBag.ProductBestsellerList = productList.OrderByDescending(product => product.BoughtQuantity).Take(4);
-            ViewBag.ProductLastAddedList = productList.OrderByDescending(product => product.TimeCreated).Take(4);
-            ViewBag.ProductRecomendedList = productList.OrderByDescending(product => product.RecomendedQuantity).Take(4);
+
+            var queryList = CleanAndDivideQueryFromSpaceAndComma(query);
+
+            ViewBag.foundProductList = Searching(productList, queryList);
+
             return View();
         }
 

@@ -3,112 +3,122 @@
     ViewData["Title"] = "Konto";
 }
 <div class="page row">
-    <div class="col-md-12">
-        <div class="shoping-cart-panel">
-            <div class="shoping-cart-panel-title text-center"
-                style="background-image: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
-                <i class="bi bi-cash-stack"></i>
-                <br />
-                Płatności do zatwierdzenia
-            </div>
-            <div class="shopping-cart-panel-summary">
-                @if (Model.PaymentTransactions.Count() == 0)
-                {
-                    <div class="fs-2 fw-bold text-center">Brak zamówień do zatwierdzenia</div>
-                }
-                else
-                {
-                    <table class="table text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nazwa transakcji</th>
-                                <th scope="col">List produktów</th>
-                                <th scope="col">Cena</th>
-                                <th scope="col">Zatwierdź płatność</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var transaction in Model.PaymentTransactions)
-                            {
+    @if(Model.UsersTransactions != null)
+    {
+        <div class="col-md-12">
+            <div class="shoping-cart-panel">
+                <div class="shoping-cart-panel-title text-center" style="background-image: url('https://images.unsplash.com/photo-1611988615248-5d4f0b9ac31e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');">
+                    <i class="bi bi-calendar4-week"></i>
+                    <br />
+                    Potwierdzenie otrzymanej płatności i wysyłki
+                </div>
+
+                <div class="shopping-cart-panel-summary">
+
+                    @if (Model.UsersTransactions.Count() == 0)
+                    {
+                        <div class="fs-2 fw-bold text-center">Brak zamówień</div>
+                    }
+                    else
+                    {
+                        <table class="table text-center">
+                            <thead>
                                 <tr>
-                                    <td>@transaction.BoughtOrder.TitleTransaction</td>
-                                    <td>
-                                        @foreach (var product in transaction.BoughtOrder.ProductItems)
-                                        {
-                                            @product.Name
-                                            <br>
-                                        }
-                                    </td>
-                                    <td>@transaction.BoughtOrder.FullPrice zł</td>
-                                    <td>
-                                        <a asp-controller="Payment" asp-action="AcceptTransaction" asp-route-id="@transaction.Id">
-                                            <button class="btn btn-dark btn-shop-control">
-                                                <i class="bi bi-check-square-fill"></i>
-                                                Zatwierdź
-                                            </button>
-                                        </a>
-                                    </td>
+                                    <th scope="col">Nazwa transakcji</th>
+                                    <th scope="col">List produktów</th>
+                                    <th scope="col">Cena</th>
+                                    <th scope="col">Potwierdź płatność</th>
+                                    <th scope="col">Potwierdź wysyłkę</th>
+                                    <th scope="col">Adres doręczenia</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-                }
+                            </thead>
+                            <tbody>
+                                @foreach (var userTransaction in Model.UsersTransactions)
+                                {
+                                    <tr>
+                                        <td>@userTransaction.BoughtOrder.TitleTransaction</td>
+                                        <td>
+                                            @foreach (var productItem in userTransaction.BoughtOrder.ProductItems)
+                                            {
+                                                @productItem.Name 
+                                                <br>
+                                            }
+                                        </td>
+                                        <td>@userTransaction.BoughtOrder.FullPrice zł</td>
+                                        @if(userTransaction.BoughtOrder.isPaymentVerified)
+                                        {
+                                            <td><span class="bi bi-check-square-fill"></span></td> 
+                                        }
+                                        else
+                                        {
+                                            <td><a class="bi bi-x-square-fill action-button" 
+                                            asp-controller="Administrator" 
+                                            asp-action="SetPaymentVerified"
+                                            asp-route-id=@userTransaction.Id></a></td>
+                                        }
+
+                                        @if(userTransaction.BoughtOrder.isShippment)
+                                        {
+                                            <td><span class="bi bi-check-square-fill"></span></td> 
+                                        }
+                                        else
+                                        {
+                                            <td><a class="bi bi-x-square-fill action-button"
+                                            asp-controller="Administrator" 
+                                            asp-action="SetShippment"
+                                            asp-route-id=@userTransaction.Id></a></td>
+                                        }
+
+                                        <td>@userTransaction.Address.ToString()</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
             </div>
         </div>
-    </div>
 
+        <div class="col-md-12">
+            <div class="shoping-cart-panel">
+                <div class="shoping-cart-panel-title text-center" style="background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');">
+                    <i class="bi bi-envelope"></i>
+                    <br />
+                    Wiadomości
+                </div>
 
-    <div class="col-md-12">
-        <div class="shoping-cart-panel">
-            <div class="shoping-cart-panel-title text-center"
-                style="background-image: url('https://images.unsplash.com/photo-1607166452427-7e4477079cb9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
-                <i class="bi bi-box"></i>
-                <br />
-                Zamówienia do wysyłki
-            </div>
-            <div class="shopping-cart-panel-summary">
-                @if (Model.ShippmentTransactions.Count() == 0)
-                {
-                    <div class="fs-2 fw-bold text-center">Brak zamówień do wysyłki</div>
-                }
-                else
-                {
-                    <table class="table text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nazwa transakcji</th>
-                                <th scope="col">List produktów</th>
-                                <th scope="col">Cena</th>
-                                <th scope="col">Potwierdź wysyłkę</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var transaction in Model.ShippmentTransactions)
-                            {
+                <div class="shopping-cart-panel-summary">
+
+                    @if (Model.Contacts.Count() == 0)
+                    {
+                        <div class="fs-2 fw-bold text-center">Brak listów</div>
+                    }
+                    else
+                    {
+                        <table class="table text-center">
+                            <thead>
                                 <tr>
-                                    <td>@transaction.BoughtOrder.TitleTransaction</td>
-                                    <td>
-                                        @foreach (var product in transaction.BoughtOrder.ProductItems)
-                                        {
-                                            @product.Name
-                                            <br>
-                                        }
-                                    </td>
-                                    <td>@transaction.BoughtOrder.FullPrice zł</td>
-                                    <td>
-                                        <a asp-controller="Payment" asp-action="ConfirmShippment" asp-route-id="@transaction.Id">
-                                            <button class="btn btn-dark btn-shop-control">
-                                                <i class="bi bi-check-square-fill"></i>
-                                                Potwierdź wysyłkę
-                                            </button>
-                                        </a>
-                                    </td>
+                                    <th scope="col">Imię</th>
+                                    <th scope="col">Adres email</th>
+                                    <th scope="col">Temat wiadomości</th>
+                                    <th scope="col">Wiadomość</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-                }
+                            </thead>
+                            <tbody>
+                                @foreach (var ContactMessage in Model.Contacts)
+                                {
+                                    <tr>
+                                        <td>@ContactMessage.Name</td>
+                                        <td>@ContactMessage.Email</td>
+                                        <td>@ContactMessage.Subject</td>
+                                        <td>@ContactMessage.Message</td> 
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
             </div>
         </div>
-    </div>
+    }
 </div>

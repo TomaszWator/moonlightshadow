@@ -64,9 +64,6 @@ namespace MoonlightShadow.Controllers
             accountViewModel.UserDataViewModel = user.GetUserDataViewModel();
             accountViewModel.ShippingDataViewModel = user.GetShippingDataViewModel();
             accountViewModel.BoughtOrders = user.BoughtOrders;
-
-            if(user.Privileges == true)
-                accountViewModel.UsersTransactions = _transactionService.Get();
             
             return View(accountViewModel);
         }
@@ -160,101 +157,6 @@ namespace MoonlightShadow.Controllers
             }
             
             return View(accountViewModel);
-        }
-
-        [HttpGet]
-        public IActionResult SetPaymentVerified(string id)
-        {
-            var transaction = _transactionService.GetBy(id);
-
-            transaction.BoughtOrder.isPaymentVerified = true;
-
-            _transactionService.Update(transaction);
-
-            var user = _userService.GetByLogin(transaction.UserId);
-
-            if(user != null)
-            {
-                var boughtOrder = user.BoughtOrders.Where(boughtOrder => boughtOrder.TitleTransaction == transaction.BoughtOrder.TitleTransaction).FirstOrDefault();
-
-                var index = user.BoughtOrders.IndexOf(boughtOrder);
-
-                boughtOrder.isPaymentVerified = true;
-
-                user.BoughtOrders[index] = boughtOrder;
-
-                _userService.Update(user);
-            }
-
-            _mailSenderService.SendPaymentAcceptedMail(transaction.EmailShipping, transaction.BoughtOrder.TitleTransaction);
-
-            // Po potwierdzeniu płatności aktualizuje ilość kupionych produktów
-            foreach (var productItemInTransaction in transaction.BoughtOrder.ProductItems)
-            {
-                if(productItemInTransaction.Category == "Camera")
-                {
-                    var camera = _cameraService.Get().FirstOrDefault(camera => camera.Id == productItemInTransaction.Id);
-
-                    if(camera != null) camera.BoughtQuantity++;
-
-                    _cameraService.Update(camera.Id, camera);
-                }
-                else if(productItemInTransaction.Category == "Game")
-                {
-                    var game = _gameService.Get().FirstOrDefault(game => game.Id == productItemInTransaction.Id);
-
-                    if(game != null) game.BoughtQuantity++;
-
-                    _gameService.Update(game.Id, game);
-                }
-                else if(productItemInTransaction.Category == "Laptop")
-                {
-                    var laptop = _laptopService.Get().FirstOrDefault(laptop => laptop.Id == productItemInTransaction.Id);
-
-                    if(laptop != null) laptop.BoughtQuantity++;
-
-                    _laptopService.Update(laptop.Id, laptop);
-                }
-                else if(productItemInTransaction.Category == "Phone")
-                {
-                    var phone = _phoneService.Get().FirstOrDefault(phone => phone.Id == productItemInTransaction.Id);
-
-                    if(phone != null) phone.BoughtQuantity++;
-
-                    _phoneService.Update(phone.Id, phone);
-                }
-            }
-
-            return RedirectToAction("Index", "Account");
-        }
-
-        [HttpGet]
-        public IActionResult SetShippment(string id)
-        {
-            var transaction = _transactionService.GetBy(id);
-
-            transaction.BoughtOrder.isShippment = true;
-
-            _transactionService.Update(transaction);
-
-            var user = _userService.GetByLogin(transaction.UserId);
-
-            if(user != null)
-            {
-                var boughtOrder = user.BoughtOrders.Where(boughtOrder => boughtOrder.TitleTransaction == transaction.BoughtOrder.TitleTransaction).FirstOrDefault();
-
-                var index = user.BoughtOrders.IndexOf(boughtOrder);
-
-                boughtOrder.isShippment = true;
-
-                user.BoughtOrders[index] = boughtOrder;
-
-                _userService.Update(user);
-            }
-
-            _mailSenderService.SendShippingOnTheWayMail(transaction.EmailShipping, transaction.BoughtOrder.TitleTransaction);
-
-            return RedirectToAction("Index", "Account");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -12,7 +12,6 @@ namespace MoonlightShadow.ViewModels.Account
         public ShippingDataViewModel ShippingDataViewModel { get; set; }
         public UserDataViewModel UserDataViewModel { get; set; }
         public List<BoughtOrder> BoughtOrders { get; set; }
-        public IEnumerable<Transaction> UsersTransactions { get; set; }
         public string TypeOfModel { get; set; }
     }
 }

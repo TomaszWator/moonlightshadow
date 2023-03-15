@@ -3,6 +3,19 @@
     ViewData["Title"] = "Kontakt";
 }
 
+@await Html.PartialAsync("~/Views/Contact/ContactModals/ConfirmSendContactMessageModal.cshtml")
+
+@if (TempData.ContainsKey("ShowModal"))
+{
+    string modalName = (string)TempData["ShowModal"];
+                        
+    <script>
+        $(document).ready(function () {
+            $('#@modalName').modal("show");
+        });
+    </script>
+}
+
 <div class="row page">
     <div class="col-md-12">
         <div class="contact-panel">

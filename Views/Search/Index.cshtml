@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "Wyszukiwarka";
+}
+
+<div class="row page">
+
+    <div class="col-md-12">
+        <div class="search-cart-panel-title text-center" style="background-image: url('https://images.unsplash.com/photo-1584535508174-a20c98bc9a91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');">
+            <i class="bi bi-search"></i>
+            <br />
+            Wyszukano
+        </div>
+    </div>
+
+    @foreach (var product in ViewBag.foundProductList)
+    {
+        <div class="col-md-6 col-lg-4 col-xxl-3">
+            <div class="product-card">
+                <div class="image" style="background-image: url('@product.ImagesPath[0]');">
+                </div>
+                <div class="description">
+                    <div class="product">
+                        <div class="product-name d-inline">
+                            <p class="d-inline fs-4 m-0 p-0 text-success">@product.Name</p>
+                        </div>
+                        
+                        <div class="clearfix"></div>
+                        <div class="product-cost d-inline">
+                            <p class="d-inline float-start m-0 p-0">Cena produktu:</p>
+                            <p class="d-inline float-end m-0 p-0 fw-bold text-danger">@product.Price zł</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="button row mt-2">
+                        <a class="col btn btn-success text-success btn-open-ofert"
+                            asp-controller="Cart" asp-action="AddOrder" asp-route-category="@product.Category" asp-route-id="@product.Id"
+                            asp-route-returnUrl="/Search">
+                            <i class="bi bi-bag-fill"></i>
+                            Dodaj do koszyka
+                        </a>
+                        <a asp-controller="Product" asp-action="@product.Category" asp-route-id="@product.Id"
+                        class="col btn btn-danger text-danger btn-buy-now">
+                            <i class="bi bi-clipboard-data"></i>
+                            Zobacz ofertę
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

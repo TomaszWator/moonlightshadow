@@ -103,7 +103,7 @@ namespace MoonlightShadow.Services
                 _Camera.ReplaceOne(camera => camera.Id == cameraIn.Id, cameraIn);
             }
 
-            if(productIn.Category == "Phone")
+            else if(productIn.Category == "Phone")
             {
                 var phoneIn = _Phone.Find(product => product.Id == productIn.Id).FirstOrDefault();
 
@@ -112,7 +112,7 @@ namespace MoonlightShadow.Services
                 _Phone.ReplaceOne(phone => phone.Id == phoneIn.Id, phoneIn);
             }
 
-            if(productIn.Category == "Laptop")
+            else if(productIn.Category == "Laptop")
             {
                 var laptopIn = _Laptop.Find(product => product.Id == productIn.Id).FirstOrDefault();
 
@@ -121,7 +121,7 @@ namespace MoonlightShadow.Services
                 _Laptop.ReplaceOne(laptop => laptop.Id == laptopIn.Id, laptopIn);
             }
 
-            if(productIn.Category == "Game")
+            else if(productIn.Category == "Game")
             {
                 var gameIn = _Game.Find(product => product.Id == productIn.Id).FirstOrDefault();
 

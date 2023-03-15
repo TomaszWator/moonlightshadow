@@ -36,7 +36,10 @@ namespace MoonlightShadow.Controllers
 
             _contactService.Create(new Contact(contactForm));
 
-            return RedirectToAction("Index", "Home");
+            TempData.Remove("ShowModal");
+            TempData["ShowModal"] = "ConfirmSendContactMessage";
+
+            return RedirectToAction("Index", "Contact");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
