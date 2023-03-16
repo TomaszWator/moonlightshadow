@@ -1,0 +1,75 @@
+@model MoonlightShadow.ViewModels.Category.CategoryViewModel;
+<div class="col-md-12 filters">
+    <div class="wallpaper-title" style="background-image: url('@ViewBag.Cover');">
+        @ViewBag.Category
+    </div>
+    @using (Html.BeginForm("Laptop", "Category", FormMethod.Post))
+    {
+        <div id="filter-menu" class="col-md-12 filter-menu">
+            <div id="filter-menu-item-1" class="filter-menu-item">Cena</div>
+            <button type="submit" class="col btn btn-outline-dark btn-open-ofert float-end mt-1">
+                <i class="bi bi-fullscreen-exit"></i>
+                Pokaż oferty
+            </button>
+        </div>
+
+        <div class="col-md-12">
+            <div id="filter-tab-item-1" class="row filter-description p-2">
+                <div class="col-md-6">
+                    <div class="filter-description-item">
+                        <div class="filter-box-title text-center">
+                            <i class="bi bi-bar-chart-steps"></i>
+                            Filtruj cenę
+                        </div>
+                        <div class="filter-box-choose">
+                            <div class="group-input">
+                                @Html.RadioButtonFor(o => o.FilterPrice, "max50", false)
+                                Do 50 zł
+                            </div>
+
+                            <div class="group-input">
+                                @Html.RadioButtonFor(o => o.FilterPrice, "min50max100", false)
+                                50 - 100 zł
+                            </div>
+
+                            <div class="group-input">
+                                @Html.RadioButtonFor(o => o.FilterPrice, "min100max400", false)
+                                100 - 400 zł
+                            </div>
+                            <div class="group-input">
+                                @Html.RadioButtonFor(o => o.FilterPrice, "min400max1000", false)
+                                400 - 1000 zł
+                            </div>
+
+                            <div class="group-input">
+                                @Html.RadioButtonFor(o => o.FilterPrice, "other", false)
+                                @Html.TextBoxFor(o => o.MinimumPrice) - @Html.TextBoxFor(o => o.MaximumPrice)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="filter-description-item">
+                        <div class="filter-box-title text-center">
+                            <i class="bi bi-bar-chart-line-fill"></i>
+                            Sortuj cenę
+                        </div>
+                        <div class="filter-box-choose">
+                            <div class="group-input">
+                                @Html.RadioButtonFor(o => o.OrderByPrice, "ascending", false)
+                                Od najniższej
+                            </div>
+
+                            <div class="group-input">
+                                @Html.RadioButtonFor(o => o.OrderByPrice, "descending", false)
+                                Od najwyższej
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

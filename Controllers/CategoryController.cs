@@ -9,6 +9,7 @@ using MoonlightShadow.Models;
 using MoonlightShadow.Services;
 using MoonlightShadow.Models.Products;
 using MoonlightShadow.Models.ClassHelper;
+using MoonlightShadow.ViewModels.Category;
 
 namespace MoonlightShadow.Controllers
 {
@@ -32,7 +33,7 @@ namespace MoonlightShadow.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Action = "Camera";
+            ViewBag.Action = "Wszystkie produkty";
             ViewBag.Category = "Wszystkie produkty";
             return View();
         }
@@ -77,6 +78,50 @@ namespace MoonlightShadow.Controllers
             ViewBag.Cover = "https://images.unsplash.com/photo-1617195347883-e72aeeef0ae7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fGdhbWVzfGVufDB8fDJ8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
 
             ViewBag.Products = _gameService.Get();
+
+            return View("~/Views/Category/Index.cshtml");
+        }
+
+        [HttpPost]
+        public IActionResult Game(CategoryViewModel categoryViewModel)
+        {
+            ViewBag.Action = "Game";
+            ViewBag.Category = "Gry";
+            ViewBag.Cover = "https://images.unsplash.com/photo-1617195347883-e72aeeef0ae7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fGdhbWVzfGVufDB8fDJ8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60";
+
+            var games = _gameService.Get();
+
+            if(categoryViewModel.FilterPrice == "max50")
+            {
+                games = games.Where(game => game.Price <= 50).ToList<Game>();
+            }
+
+            else if(categoryViewModel.FilterPrice == "min50max100")
+            {
+                games = games.Where(game => game.Price >= 50 && game.Price <= 100).ToList<Game>();
+            }
+
+            else if(categoryViewModel.FilterPrice == "min100max400")
+            {
+                games = games.Where(game => game.Price >= 100 && game.Price <= 400).ToList<Game>();
+            }
+
+            else if(categoryViewModel.FilterPrice == "other")
+            {
+                games = games.Where(game => game.Price >= categoryViewModel.MinimumPrice && 
+                                            game.Price <= categoryViewModel.MaximumPrice).ToList<Game>();
+            }
+
+            if(categoryViewModel.OrderByPrice == "ascending")
+            {
+                games = games.OrderBy(game => game.Price).ToList<Game>();
+            }
+            else if(categoryViewModel.OrderByPrice == "descending")
+            {
+                games = games.OrderByDescending(game => game.Price).ToList<Game>();
+            }
+
+            ViewBag.Products = games;
 
             return View("~/Views/Category/Index.cshtml");
         }

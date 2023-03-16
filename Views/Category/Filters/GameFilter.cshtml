@@ -1,411 +1,75 @@
+@model MoonlightShadow.ViewModels.Category.CategoryViewModel;
 <div class="col-md-12 filters">
     <div class="wallpaper-title" style="background-image: url('@ViewBag.Cover');">
         @ViewBag.Category
     </div>
-    <div id="filter-menu" class="col-md-12 filter-menu">
-        <div id="filter-menu-item-1" class="filter-menu-item active">Producent</div>
-        <div id="filter-menu-item-2" class="filter-menu-item">Stan</div>
-        <div id="filter-menu-item-3" class="filter-menu-item">Cena</div>
-        <div id="filter-menu-item-4" class="filter-menu-item">Szczegóły</div>
-        <button type="submit" class="col btn btn-outline-dark btn-open-ofert float-end mt-1">
-            <i class="bi bi-fullscreen-exit"></i>
-            Pokaż oferty
-        </button>
-    </div>
-
-    <div class="col-md-12">
-        <div id="filter-tab-item-1" class="row filter-description p-2">
-            <div class="col-md-8">
-                <div class="filter-description-item">
-                    <div class="filter-box-title text-center">
-                        <i class="bi bi-building"></i>
-                        Producent
-                    </div>
-                    <div class="filter-box-choose row">
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            Acer
-                        </div>
-
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            HP
-                        </div>
-
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            Lenovo
-                        </div>
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            Dell
-                        </div>
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            Acer
-                        </div>
-
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            HP
-                        </div>
-
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            Lenovo
-                        </div>
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            Dell
-                        </div>
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            Acer
-                        </div>
-
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            HP
-                        </div>
-
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            Lenovo
-                        </div>
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            Dell
-                        </div>
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            Acer
-                        </div>
-
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            HP
-                        </div>
-
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            Lenovo
-                        </div>
-                        <div class="group-input col-auto">
-                            <input type="checkbox" />
-                            Dell
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="filter-description-item">
-                    <div class="filter-box-title text-center">
-                        <i class="bi bi-intersect"></i>
-                        Model produktu
-                    </div>
-                    <div class="filter-box-choose">
-                        <div class="filter-box-choose">
-                            <div class="group-input">
-                                <input type="checkbox" />
-                                MateBook D15
-                            </div>
-                        </div>
-                        <div class="filter-box-choose">
-                            <div class="group-input">
-                                <input type="checkbox" />
-                                MateBook D16
-                            </div>
-                        </div>
-                        <div class="filter-box-choose">
-                            <div class="group-input">
-                                <input type="checkbox" />
-                                MateBook D14
-                            </div>
-                        </div>
-
-                        <div class="filter-box-choose">
-                            <div class="group-input">
-                                <input type="checkbox" />
-                                Ideapad 3-17ADA
-                            </div>
-                        </div>
-
-                        <div class="filter-box-choose">
-                            <div class="group-input">
-                                <input type="checkbox" />
-                                MateBook D15
-                            </div>
-                        </div>
-                        <div class="filter-box-choose">
-                            <div class="group-input">
-                                <input type="checkbox" />
-                                MateBook D16
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    @using (Html.BeginForm("Game", "Category", FormMethod.Post))
+    {
+        <div id="filter-menu" class="col-md-12 filter-menu">
+            <div id="filter-menu-item-1" class="filter-menu-item">Cena</div>
+            <button type="submit" class="col btn btn-outline-dark btn-open-ofert float-end mt-1">
+                <i class="bi bi-fullscreen-exit"></i>
+                Pokaż oferty
+            </button>
         </div>
 
-        <div id="filter-tab-item-2" class="row filter-description p-2">
-            <div class="col-md-4">
-                <div class="filter-description-item">
-                    <div class="filter-box-title text-center">
-                        <i class="bi bi-stars"></i>
-                        Stan produktu
-                    </div>
-                    <div class="filter-box-choose">
-                        <div class="filter-box-choose">
-                            <div class="group-input">
-                                <input type="checkbox" />
-                                Nowe
-                            </div>
+        <div class="col-md-12">
+            <div id="filter-tab-item-1" class="row filter-description p-2">
+                <div class="col-md-6">
+                    <div class="filter-description-item">
+                        <div class="filter-box-title text-center">
+                            <i class="bi bi-bar-chart-steps"></i>
+                            Filtruj cenę
                         </div>
                         <div class="filter-box-choose">
                             <div class="group-input">
-                                <input type="checkbox" />
-                                Używane
+                                @Html.RadioButtonFor(o => o.FilterPrice, "max50", false)
+                                Do 50 zł
                             </div>
-                        </div>
-                        <div class="filter-box-choose">
-                            <div class="group-input">
-                                <input type="checkbox" />
-                                Po zwrocie
-                            </div>
-                        </div>
 
-                        <div class="filter-box-choose">
                             <div class="group-input">
-                                <input type="checkbox" />
-                                Uszkodzone
+                                @Html.RadioButtonFor(o => o.FilterPrice, "min50max100", false)
+                                50 - 100 zł
+                            </div>
+
+                            <div class="group-input">
+                                @Html.RadioButtonFor(o => o.FilterPrice, "min100max400", false)
+                                100 - 400 zł
+                            </div>
+                            <div class="group-input">
+                                @Html.RadioButtonFor(o => o.FilterPrice, "min400max1000", false)
+                                400 - 1000 zł
+                            </div>
+
+                            <div class="group-input">
+                                @Html.RadioButtonFor(o => o.FilterPrice, "other", false)
+                                @Html.TextBoxFor(o => o.MinimumPrice) - @Html.TextBoxFor(o => o.MaximumPrice)
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="filter-description-item">
-                    <div class="filter-box-title text-center">
-                        <i class="bi bi-calendar-plus-fill"></i>
-                        Rodzaj oferty
-                    </div>
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            Kup teraz
+                <div class="col-md-6">
+                    <div class="filter-description-item">
+                        <div class="filter-box-title text-center">
+                            <i class="bi bi-bar-chart-line-fill"></i>
+                            Sortuj cenę
                         </div>
-                    </div>
+                        <div class="filter-box-choose">
+                            <div class="group-input">
+                                @Html.RadioButtonFor(o => o.OrderByPrice, "ascending", false)
+                                Od najniższej
+                            </div>
 
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            Licytacja
-                        </div>
-                    </div>
-
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            Ogłoszenia
+                            <div class="group-input">
+                                @Html.RadioButtonFor(o => o.OrderByPrice, "descending", false)
+                                Od najwyższej
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="filter-description-item">
-                    <div class="filter-box-title text-center">
-                        <i class="bi bi-star-fill"></i>
-                        Ocena produktu
-                    </div>
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <label for="customRange3" class="form-label">Example range</label>
-                            <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-
-        <div id="filter-tab-item-3" class="row filter-description p-2">
-            <div class="col-md-6">
-                <div class="filter-description-item">
-                    <div class="filter-box-title text-center">
-                        <i class="bi bi-bar-chart-steps"></i>
-                        Filtruj cenę
-                    </div>
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="radio" name="filtr_price" />
-                            Do 50 zł
-                        </div>
-
-                        <div class="group-input">
-                            <input type="radio" name="filtr_price" />
-                            50 - 100 zł
-                        </div>
-
-                        <div class="group-input">
-                            <input type="radio" name="filtr_price" />
-                            100 - 400 zł
-                        </div>
-                        <div class="group-input">
-                            <input type="radio" name="filtr_price" />
-                            400 - 1000 zł
-                        </div>
-
-                        <div class="group-input">
-                            <input type="radio" name="filtr_price" />
-                            <input class="input-price" type="text" /> - <input type="text" class="input-price" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="filter-description-item">
-                    <div class="filter-box-title text-center">
-                        <i class="bi bi-bar-chart-line-fill"></i>
-                        Sortuj cenę
-                    </div>
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="radio" name="filtr_price" />
-                            Od najniższej
-                        </div>
-
-                        <div class="group-input">
-                            <input type="radio" name="filtr_price" />
-                            Od najwyższej
-                        </div>
-
-                        <div class="group-input">
-                            <input type="radio" name="filtr_price" />
-                            Od najniższej z dostawą
-                        </div>
-                        <div class="group-input">
-                            <input type="radio" name="filtr_price" />
-                            Od najwyższej z dostawą
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="filter-tab-item-4" class="row filter-description p-2">
-            <div class="col-md-4">
-                <div class="filter-description-item">
-                    <div class="filter-box-title text-center">
-                        <i class="bi bi-info-square-fill"></i>
-                        Ram
-                    </div>
-
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            2 GB
-                        </div>
-                    </div>
-
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            4 GB
-                        </div>
-                    </div>
-
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            8 GB
-                        </div>
-                    </div>
-
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            16 GB
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="filter-description-item">
-                    <div class="filter-box-title text-center">
-                        <i class="bi bi-info-square-fill"></i>
-                        Ram
-                    </div>
-
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            2 GB
-                        </div>
-                    </div>
-
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            4 GB
-                        </div>
-                    </div>
-
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            8 GB
-                        </div>
-                    </div>
-
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            16 GB
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="filter-description-item">
-                    <div class="filter-box-title text-center">
-                        <i class="bi bi-info-square-fill"></i>
-                        Ram
-                    </div>
-
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            2 GB
-                        </div>
-                    </div>
-
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            4 GB
-                        </div>
-                    </div>
-
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            8 GB
-                        </div>
-                    </div>
-
-                    <div class="filter-box-choose">
-                        <div class="group-input">
-                            <input type="checkbox" />
-                            16 GB
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 </div>
