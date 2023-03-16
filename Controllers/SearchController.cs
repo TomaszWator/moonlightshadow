@@ -84,7 +84,7 @@ namespace MoonlightShadow.Controllers
             return queryList;
         }
 
-        public List<Product> Searching(List<Product> productList, string[] queryList)
+        public List<Product> SearchingBasic(List<Product> productList, string[] queryList)
         {
             var foundProducts = new List<Product>();
 
@@ -102,6 +102,36 @@ namespace MoonlightShadow.Controllers
             return foundProducts;
         }
 
+        public List<Product> SearchingExtended(List<Product> productList, string[] queryList)
+        {
+            var foundProducts = new List<Tuple<Product, int>>();
+
+            int numberOfRepetitions = 0;
+
+            foreach (var product in productList)
+            {
+                numberOfRepetitions = 0;
+
+                foreach(var queryItem in queryList)
+                {
+                    if(product.Name.ToLower().Contains(queryItem))
+                    {
+                        numberOfRepetitions++;
+                    }
+                }
+
+                if(numberOfRepetitions != 0)
+                {
+                    var tuple = new Tuple<Product, int>(product, numberOfRepetitions);
+
+                    foundProducts.Add(tuple);
+                }
+            }
+            var result = foundProducts.OrderByDescending(product => product.Item2).Select(product => product.Item1);
+            
+            return result.ToList<Product>();
+        }
+
         [HttpGet]
         public IActionResult Index(string query)
         {
@@ -115,7 +145,7 @@ namespace MoonlightShadow.Controllers
 
             var queryList = CleanAndDivideQueryFromSpaceAndComma(query);
 
-            ViewBag.foundProductList = Searching(productList, queryList);
+            ViewBag.foundProductList = SearchingExtended(productList, queryList);
 
             return View();
         }
