@@ -32,8 +32,6 @@ namespace WebApi.Services
             email.Subject = subject;
             email.Body = new TextPart(TextFormat.Html) { Text = html };
 
-            System.Console.WriteLine(email.Body);
-
             using (var client = new SmtpClient())
             {
                 client.Connect(_mailSettings.Host_Address, _mailSettings.Host_Port, SecureSocketOptions.StartTls);
