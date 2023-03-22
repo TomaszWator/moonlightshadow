@@ -17,8 +17,25 @@
 }
 
 <div class="row page">
+    @if(ViewBag.Action == "Camera")
+    {
+        @await Html.PartialAsync("~/Views/Category/Filters/CameraFilters.cshtml")
+    }
 
-    @await Html.PartialAsync("~/Views/Category/Filters/GameFilter.cshtml")
+    @if(ViewBag.Action == "Game")
+    {
+        @await Html.PartialAsync("~/Views/Category/Filters/GameFilters.cshtml")
+    }
+
+    @if(ViewBag.Action == "Laptop")
+    {
+        @await Html.PartialAsync("~/Views/Category/Filters/LaptopFilters.cshtml")
+    }
+
+    @if(ViewBag.Action == "Phone")
+    {
+        @await Html.PartialAsync("~/Views/Category/Filters/PhoneFilters.cshtml")
+    }
 
     @foreach (var product in ViewBag.Products)
     {

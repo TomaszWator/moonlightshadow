@@ -52,7 +52,15 @@ namespace MoonlightShadow.Controllers
 
             if (user.IsNull())
             {
-                RedirectToAction("Index", "SignOut");
+                RedirectToAction("Index", "Login");
+            }
+
+            if(user.Privileges == false)
+            {
+                TempData.Remove("ShowModal");
+                TempData["ShowModal"] = "NoPermissions";
+
+                return RedirectToAction("Index", "Home");
             }
 
             return View();

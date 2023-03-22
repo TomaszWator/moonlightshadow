@@ -57,16 +57,20 @@ namespace MoonlightShadow.Controllers
 
             if (user.IsNull())
             {
-                RedirectToAction("Index", "SignOut");
+                RedirectToAction("Index", "Login");
+            }
+
+            if(user.Privileges == false)
+            {
+                TempData.Remove("ShowModal");
+                TempData["ShowModal"] = "NoPermissions";
+                return RedirectToAction("Index", "Home");
             }
 
             var administratorViewModel = new AdministratorViewModel();
 
-            if(user.Privileges == true)
-            {
-                administratorViewModel.UsersTransactions = _transactionService.Get();
-                administratorViewModel.Contacts = _contactService.Get();
-            }
+            administratorViewModel.UsersTransactions = _transactionService.Get().Where(transaction => transaction.BoughtOrder.isShippment == false).ToList();
+            administratorViewModel.Contacts = _contactService.Get();
                
             return View(administratorViewModel);
         }

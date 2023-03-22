@@ -9,19 +9,19 @@
     <br />
     <br />
     <div class="float-start m-0 p-0">Przekątna:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Screen.Diagonal</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.ScreenDiagonal</div>
     <br />
     <div class="float-start m-0 p-0">Rozdzielczość:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Screen.Resolution</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.ScreenResolution</div>
     <br />
     <div class="float-start m-0 p-0">Typ:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Screen.MatrixType</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.ScreenMatrixType</div>
     <br />
     <div class="float-start m-0 p-0">Odświeżanie:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Screen.Refreshing</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.ScreenRefreshing</div>
     <br />
     <div class="float-start m-0 p-0">Dotykowy:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Screen.Touchscreen</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.TouchScreen</div>
     <br />
 </div>
 <br />
@@ -32,14 +32,8 @@
     <br />
     <br />
     <div class="float-start m-0 p-0">Seria i model:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Processor.Series @ViewBag.Product.Processor.Model
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Processor
     </div>
-    <br />
-    <div class="float-start m-0 p-0">Rdzenie:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Processor.Cores</div>
-    <br />
-    <div class="float-start m-0 p-0">Wątki:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Processor.Threads</div>
     <br />
 </div>
 <br />
@@ -50,19 +44,13 @@
     <br />
     <br />
     <div class="float-start m-0 p-0">Rozmiar:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Ram.Size</div>
-    <br />
-    <div class="float-start m-0 p-0">Maksymalny rozmiar:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Ram.MaxSize</div>
-    <br />
-    <div class="float-start m-0 p-0">Typ:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Ram.Type</div>
-    <br />
-    <div class="float-start m-0 p-0">Slotów:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Ram.Slots</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.RamSize</div>
     <br />
     <div class="float-start m-0 p-0">Wolnych slotów:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Ram.FreeSlots</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.RamFreeSlots</div>
+    <br />
+    <div class="float-start m-0 p-0">Częstotliwość:</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.RamFrequency</div>
     <br />
 </div>
 <br />
@@ -73,15 +61,7 @@
     <br />
     <br />
     <div class="float-start m-0 p-0">Pojemność:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.HardDrive.Capacity
-    </div>
-    <br />
-    <div class="float-start m-0 p-0">Rodzaj:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.HardDrive.Type</div>
-    <br />
-    <div class="float-start m-0 p-0">Wątki:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.HardDrive.Interface
-    </div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.HardDrive</div>
     <br />
 </div>
 <br />
@@ -92,13 +72,7 @@
     <br />
     <br />
     <div class="float-start m-0 p-0">Nazwa:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.GraphicsCard.Name</div>
-    <br />
-    <div class="float-start m-0 p-0">Typ:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.GraphicsCard.Type</div>
-    <br />
-    <div class="float-start m-0 p-0">Pamięć:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.GraphicsCard.Memory</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.GraphicsCard</div>
     <br />
 </div>
 <br />
@@ -108,14 +82,8 @@
     <div class="float-start m-0 p-0 fw-bold fs-4">Bateria</div>
     <br />
     <br />
-    <div class="float-start m-0 p-0">Typ:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Battery.Type</div>
-    <br />
     <div class="float-start m-0 p-0">Pojemność:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Battery.Capacity</div>
-    <br />
-    <div class="float-start m-0 p-0">Długość pracy na baterii:</div>
-    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Battery.maxLifeTime</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.BatteryCapacity</div>
     <br />
 </div>
 <br />
@@ -125,42 +93,7 @@
     <div class="float-start m-0 p-0 fw-bold fs-4">Złącza</div>
     <br />
     <br />
-    <div class="float-end text-end m-0 p-0 fw-bold">
-        @string.Join(", ", ViewBag.Product.Connectors)
-    </div>
-</div>
-<br />
-<hr />
-<hr />
-
-<div class="product-parameters-group">
-    <div class="float-start m-0 p-0 fw-bold fs-4">Komunikacja</div>
+    <div class="float-end m-0 p-0 fw-bold">@ViewBag.Product.Connectors</div>
     <br />
-    <br />
-    <div class="float-end text-end m-0 p-0 fw-bold">
-        @string.Join(", ", ViewBag.Product.Communication)
-    </div>
-</div>
-<br />
-<hr />
-
-<div class="product-parameters-group">
-    <div class="float-start m-0 p-0 fw-bold fs-4">Dodatki</div>
-    <br />
-    <br />
-    <div class="float-end text-end m-0 p-0 fw-bold">
-        @string.Join(", ", ViewBag.Product.Features)
-    </div>
-</div>
-<br />
-<hr />
-
-<div class="product-parameters-group">
-    <div class="float-start m-0 p-0 fw-bold fs-4">Sterowanie</div>
-    <br />
-    <br />
-    <div class="float-end text-end m-0 p-0 fw-bold">
-        @string.Join(", ", ViewBag.Product.Control)
-    </div>
 </div>
 <br />

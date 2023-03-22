@@ -56,7 +56,7 @@ namespace MoonlightShadow.Controllers
 
             if (user.IsNull())
             {
-                RedirectToAction("Index", "SignOut");
+                RedirectToAction("Index", "Logout");
             }
             
             var accountViewModel = new AccountViewModel();
@@ -79,7 +79,7 @@ namespace MoonlightShadow.Controllers
 
             if (user.IsNull())
             {
-                RedirectToAction("Index", "SignOut");
+                RedirectToAction("Index", "Login");
             }
 
             accountViewModel.UserDataViewModel = user.GetUserDataViewModel();

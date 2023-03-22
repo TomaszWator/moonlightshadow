@@ -34,9 +34,11 @@ namespace MoonlightShadow.Controllers
 
         public IActionResult Index(string returnUrl = null)
         {
-            if (User.Identity.IsAuthenticated)
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+
+            if (userEmail.IsNotNull()) 
             {
-                RedirectToAction("Index", "Account");
+                return RedirectToAction("Index", "Account");
             }
 
             ViewBag.ReturnUrl = returnUrl;
@@ -50,9 +52,11 @@ namespace MoonlightShadow.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(LoginViewModel loginViewModel, string returnUrl = null)
         {
-            if (User.Identity.IsAuthenticated)
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+
+            if (userEmail.IsNotNull()) 
             {
-                RedirectToAction("Index", "Account");
+                return RedirectToAction("Index", "Account");
             }
 
             ViewBag.ReturnUrl = returnUrl;

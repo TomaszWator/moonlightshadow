@@ -20,9 +20,7 @@ namespace MoonlightShadow.Controllers
     public class CartController : Controller
     {
         private readonly UserService _userService;
-
         private readonly ProductService _productService;
-
         private readonly OrderService _orderService;
 
         public CartController(
