@@ -67,6 +67,7 @@ namespace MoonlightShadow.Controllers
 
             ViewBag.isFollowed = followed;
             ViewBag.isRecomended = recomended;
+            ViewBag.similarProducts = _cameraService.Get().Where(cameraInService => cameraInService.IdUserCreated == camera.IdUserCreated && camera.Id != cameraInService.Id).Take(3).ToList();
 
             return View("~/Views/Product/Index.cshtml");
         }
@@ -99,6 +100,7 @@ namespace MoonlightShadow.Controllers
 
             ViewBag.isFollowed = followed;
             ViewBag.isRecomended = recomended;
+            ViewBag.similarProducts = _gameService.Get().Where(gameInService => gameInService.IdUserCreated == game.IdUserCreated && game.Id != gameInService.Id).Take(3).ToList();
 
             return View("~/Views/Product/Index.cshtml");
         }
@@ -131,6 +133,7 @@ namespace MoonlightShadow.Controllers
 
             ViewBag.isFollowed = followed;
             ViewBag.isRecomended = recomended;
+            ViewBag.similarProducts = _laptopService.Get().Where(laptopInService => laptopInService.IdUserCreated == laptop.IdUserCreated && laptop.Id != laptopInService.Id).Take(3).ToList();
 
             return View("~/Views/Product/Index.cshtml");
         }
@@ -163,7 +166,8 @@ namespace MoonlightShadow.Controllers
 
             ViewBag.isFollowed = followed;
             ViewBag.isRecomended = recomended;
-
+            ViewBag.similarProducts = _phoneService.Get().Where(phoneInService => phoneInService.IdUserCreated == phone.IdUserCreated && phone.Id != phoneInService.Id).Take(3).ToList();
+            
             return View("~/Views/Product/Index.cshtml");
         }
 
