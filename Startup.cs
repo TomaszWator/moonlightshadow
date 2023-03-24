@@ -88,6 +88,8 @@ namespace MoonlightShadow
 
             services.AddSingleton<SessionService>();
 
+            services.AddSingleton<TokenService>();
+
             services.AddHttpContextAccessor();
 
             services.AddControllers().AddNewtonsoftJson(options => options.UseMemberCasing());

@@ -21,15 +21,18 @@ namespace MoonlightShadow.Controllers
     {
         private readonly UserService _userService;
         private readonly MailSenderService _mailSenderService;
-        private SessionService _sessionService;
+        private readonly SessionService _sessionService;
+        private readonly TokenService _tokenService;
 
         public LoginController(UserService userService,
             MailSenderService mailSenderService,
-            SessionService sessionService)
+            SessionService sessionService,
+            TokenService tokenService)
         {
             _userService = userService;
             _sessionService = sessionService;
             _mailSenderService = mailSenderService;
+            _tokenService = tokenService;
         }
 
         public IActionResult Index(string returnUrl = null)
@@ -141,7 +144,7 @@ namespace MoonlightShadow.Controllers
 
                 _mailSenderService.SendNewPassword(loginViewModel.RemindMePasswordViewModel.Email, user.Login, newPassword, acceptNewPasswordToken);
 
-                _sessionService.SetString("acceptNewPasswordToken", acceptNewPasswordToken);
+                _tokenService.Create(new Token() { name = "acceptNewPasswordToken", value = acceptNewPasswordToken, email = loginViewModel.RemindMePasswordViewModel.Email});
 
                 user.NewPassword = new Password(Hasher.Encrypt(newPassword).ToTuple());
 
@@ -158,13 +161,11 @@ namespace MoonlightShadow.Controllers
 
         public IActionResult AcceptRemindMePassword(string email, string token)
         {
-            var acceptNewPasswordToken = _sessionService.GetString("acceptNewPasswordToken");
+            var tokenFromDb = _tokenService.GetByValue(token);
 
-            Console.WriteLine("Token: " + token);
-
-            if (token == acceptNewPasswordToken)
+            if (tokenFromDb.IsNotNull() && tokenFromDb.email == email)
             {
-                _sessionService.Remove("acceptNewPasswordToken");
+                _tokenService.Remove(tokenFromDb);
                 
                 var user = _userService.GetByEmail(email);
 

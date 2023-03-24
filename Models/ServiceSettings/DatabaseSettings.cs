@@ -13,6 +13,8 @@ namespace MoonlightShadow.Models
         public string PhoneCollectionName { get; set; }
         public string ContactCollectionName { get; set; }
         public string TransactionCollectionName { get; set; }
+        public string TokenCollectionName { get; set; }
+        public string Salt { get; set; }
     }
 
     public interface IDatabaseSettings
@@ -28,5 +30,7 @@ namespace MoonlightShadow.Models
         string PhoneCollectionName { get; set; }
         string ContactCollectionName { get; set; }
         string TransactionCollectionName { get; set; }
+        string TokenCollectionName { get; set; }
+        string Salt { get; set; }
     }
 }

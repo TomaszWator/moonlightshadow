@@ -22,14 +22,17 @@ namespace MoonlightShadow.Controllers
         private readonly UserService _userService;
         private readonly MailSenderService _mailSenderService;
         private readonly SessionService _sessionService;
+        private readonly TokenService _tokenService;
 
         public SignUpController(UserService userService,
             MailSenderService mailSenderService,
-            SessionService sessionService)
+            SessionService sessionService,
+            TokenService tokenService)
         {
             _userService = userService;
             _mailSenderService = mailSenderService;
             _sessionService = sessionService;
+            _tokenService = tokenService;
         }
 
         public IActionResult Index()
@@ -76,10 +79,8 @@ namespace MoonlightShadow.Controllers
             _userService.Create(new Models.User(SignUpForm));
 
             var registrationToken = Hasher.GetToken();
-
-            _sessionService.SetString("registrationToken", registrationToken);
-
-            _sessionService.SetString("userEmail", SignUpForm.Email);
+            
+            _tokenService.Create(new Token() { name = "registrationToken", value = registrationToken, email = SignUpForm.Email });
 
             _mailSenderService.SendRegistrationMail(SignUpForm.Email, SignUpForm.Login, registrationToken);
 
@@ -92,11 +93,9 @@ namespace MoonlightShadow.Controllers
         [HttpGet]
         public IActionResult VerifyEmail(string email, string token)
         {
-            var sessionToken = _sessionService.GetString("registrationToken");
+            var tokenFromDb = _tokenService.GetByValue(token);
 
-            Console.WriteLine("Token: " + token);
-
-            if (token == sessionToken)
+            if (tokenFromDb.IsNotNull() && tokenFromDb.email == email)
             {
                 var user = _userService.GetByEmail(email);
 
