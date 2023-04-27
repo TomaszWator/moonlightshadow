@@ -106,21 +106,21 @@ namespace MoonlightShadow.Controllers
                     return View(accountViewModel);
                 }
 
-                if (user.Password.Hash != Hasher.Encrypt(accountViewModel.ChangePasswordViewModel.Password, user.Password.Salt).hash)
+                if (user.PasswordHash != Hasher.Encrypt(accountViewModel.ChangePasswordViewModel.Password))
                 {
                     ModelState.AddModelError("ChangePasswordViewModel.Password", "Hasło niepoprawne");
 
                     return View(accountViewModel);
                 }
 
-                if (user.Password.Hash == Hasher.Encrypt(accountViewModel.ChangePasswordViewModel.NewPassword, user.Password.Salt).hash)
+                if (user.PasswordHash == Hasher.Encrypt(accountViewModel.ChangePasswordViewModel.NewPassword))
                 {
                     ModelState.AddModelError("ChangePasswordViewModel.NewPassword", "Nowe hasło jest takie same jak było");
 
                     return View(accountViewModel);
                 }
 
-                user.Password = new Password(Hasher.Encrypt(accountViewModel.ChangePasswordViewModel.NewPassword).ToTuple());
+                user.PasswordHash = Hasher.Encrypt(accountViewModel.ChangePasswordViewModel.NewPassword);
 
                 _userService.Update(user);
 
@@ -137,7 +137,7 @@ namespace MoonlightShadow.Controllers
                     return View(accountViewModel);
                 }
 
-                if (user.Password.Hash != Hasher.Encrypt(accountViewModel.ShippingDataViewModel.Password, user.Password.Salt).hash)
+                if (user.PasswordHash != Hasher.Encrypt(accountViewModel.ShippingDataViewModel.Password))
                 {
                     ModelState.AddModelError("Password", "Hasło niepoprawne");
 

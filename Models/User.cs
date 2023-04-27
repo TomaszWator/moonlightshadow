@@ -16,9 +16,9 @@ namespace MoonlightShadow.Models
 
         public bool Privileges {get; set; }
 
-        public Password Password { get; set; }
+        public string PasswordHash { get; set; }
 
-        public Password NewPassword { get; set; }
+        public string NewPasswordHash { get; set; }
 
         public string Email { get; set; }
 
@@ -48,9 +48,9 @@ namespace MoonlightShadow.Models
 
             Privileges = false;
 
-            Password = new Password(Hasher.Encrypt(signUpForm.Password).ToTuple());
+            PasswordHash = Hasher.Encrypt(signUpForm.Password);
 
-            NewPassword = new Password();
+            NewPasswordHash = "";
 
             Email = signUpForm.Email;
 

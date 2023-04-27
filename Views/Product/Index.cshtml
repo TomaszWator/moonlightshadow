@@ -209,14 +209,16 @@
                         @foreach (var similarProduct in ViewBag.similarProducts)
                         {
                             <div class="col-md-4 mb-3">
-                                <div class="card">
-                                    <img class="img-fluid" alt="100%x280"
-                                        src="@similarProduct.ImagesPath[0]" height="280">
-                                    <div class="card-body">
-                                        <h4 class="card-title">@similarProduct.Name</h4>
-                                        <p class="card-text">@similarProduct.Description</p>
+                                <a asp-controller="Product" asp-action="@similarProduct.Category" asp-route-id="@similarProduct.Id" class="text-dark text-decoration-none">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280"
+                                            src="@similarProduct.ImagesPath[0]" height="280">
+                                        <div class="card-body">
+                                            <h4 class="card-title">@similarProduct.Name</h4>
+                                            <p class="card-text">@similarProduct.Description</p>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         }
                     </div>

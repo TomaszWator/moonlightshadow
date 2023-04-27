@@ -63,9 +63,9 @@ namespace Extension.Security
             return randomString.ToString();
         }
 
-        public static (string hash, byte[] salt) Encrypt(string password)
+        public static string Encrypt(string password)
         {
-            var salt = Hasher.GetHash(GetRandomString(16)).Take(16).ToArray();
+            var salt = Hasher.GetHash("XUYBYEZIEFGHYPMH").Take(16).ToArray();
 
             string hash = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password: password,
@@ -74,7 +74,7 @@ namespace Extension.Security
                 iterationCount: 1000,
                 numBytesRequested: 256 / 8));
 
-            return (hash, salt);
+            return hash;
         }
 
         public static (string hash, byte[] salt) Encrypt(string password, byte[] salt)

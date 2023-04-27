@@ -91,7 +91,7 @@ namespace MoonlightShadow.Controllers
                     return View(loginViewModel);
                 }
 
-                if (user.Password.Hash != Hasher.Encrypt(loginViewModel.LoginFormViewModel.Password, user.Password.Salt).hash)
+                if (user.PasswordHash != Hasher.Encrypt(loginViewModel.LoginFormViewModel.Password))
                 {
                     ModelState.AddModelError("LoginFormViewModel.Password", "Hasło niepoprawne");
 
@@ -146,7 +146,7 @@ namespace MoonlightShadow.Controllers
 
                 _tokenService.Create(new Token() { name = "acceptNewPasswordToken", value = acceptNewPasswordToken, email = loginViewModel.RemindMePasswordViewModel.Email});
 
-                user.NewPassword = new Password(Hasher.Encrypt(newPassword).ToTuple());
+                user.NewPasswordHash = Hasher.Encrypt(newPassword);
 
                 _userService.Update(user);
 
@@ -171,7 +171,7 @@ namespace MoonlightShadow.Controllers
 
                 if (user != null)
                 {
-                    user.Password = user.NewPassword;
+                    user.PasswordHash = user.NewPasswordHash;
 
                     _userService.Update(user);
 
